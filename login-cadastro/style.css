@@ -1,0 +1,80 @@
+body {
+    background-color: #F0EFF5;
+    font-family: 'Poppins', sans-serif;
+}
+
+#btns-layout {
+    margin-bottom: 10px;
+    margin-top: 10px;
+    height: 34px;
+}
+
+.btn-active {
+    display: inline-block;
+    background: #F0EFF5;
+    color: rgb(71, 7, 234);
+    padding: 5px 5px;
+    transition: all 300ms ease;
+    border: 0px;
+    border-left: solid 6px rgb(71, 7, 234);
+    float: left;
+}
+
+.btn-desative {
+    display: inline-block;
+    background: #F0EFF5;
+    color: #86848c;
+    padding: 5px 5px;
+    transition: all 300ms ease;
+    border: 0px;
+    float: right;
+    /* border-left: solid 6px rgb(71, 7, 234); */
+}
+
+.main {
+    height: 595px;
+    padding: 40px 0;
+}
+
+.main input,
+.main input::-webkit-input-placeholder {
+    font-size: 15px;
+    padding-top: 3px;
+}
+
+.main-center {
+    margin: auto;
+    max-width: 400px;
+    padding: 10px 40px;
+    background: white;
+    color: rgb(71, 7, 234);
+    text-shadow: none;
+    -webkit-box-shadow: 0px 3px 5px 0px rgba(0, 0, 0, 0.31);
+    -moz-box-shadow: 0px 3px 5px 0px rgba(0, 0, 0, 0.31);
+    box-shadow: 0px 3px 5px 0px rgba(0, 0, 0, 0.31);
+}
+
+span.input-group-addon i {
+    color: #009edf;
+    font-size: 17px;
+}
+
+.btn-login {
+    display: block;
+    width: 45%;
+    background: rgb(71, 7, 234);
+    color: white;
+    border-radius: 1rem;
+    padding: 5px 0px;
+    margin: auto;
+    transition: all 300ms ease;
+    border: 0px;
+}
+
+.float-left {
+    float: left;
+}
+
+.float-rigth {
+    float: right;
+}
