@@ -19,10 +19,10 @@
 			<div class="main">
 				<div class="main-center margin-login">
 					<div id="btns-layout">
-						<button id="faz-login" class="btn-active" onclick="#">Faça seu Login</button>
-						<button id="faz-cadastro"class="btn-desative" onclick="#">Faça seu cadastro</button>
+						<button id="faz-login" class="btn-active" onclick="">Faça seu Login</button>
+						<button id="faz-cadastro"class="btn-desative" onclick="">Faça seu cadastro</button>
 					</div>					
-					<form class="" method="post" action="#">
+					<form class="" method="post" action="../dashboard/index.php">
 											
 						<div class="form-group">
 							<label for="email">Email</label>
@@ -49,8 +49,8 @@
 				<div class="main-center" style="display: none;">
 					
 				<div id="btns-layout">
-						<button id="faz-login" class="btn-desative" onclick="#">Faça seu Login</button>
-						<button id="faz-cadastro" class="btn-active" onclick="#">Faça seu cadastro</button>
+						<button id="faz-login" class="btn-desative" onclick="">Faça seu Login</button>
+						<button id="faz-cadastro" class="btn-active" onclick="">Faça seu cadastro</button>
 					</div>					
 					
 					<form class="" method="post" action="#">
