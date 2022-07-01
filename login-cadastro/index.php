@@ -17,92 +17,78 @@
 
 <div class="container">
 			<div class="main">
-				<div class="main-center">
+				<div class="main-center margin-login">
 					<div id="btns-layout">
 						<button id="faz-login" class="btn-active" onclick="#">Faça seu Login</button>
 						<button id="faz-cadastro"class="btn-desative" onclick="#">Faça seu cadastro</button>
-					</div>
-					<h5>Sign up once and watch any of our free demos.</h5>
+					</div>					
 					<form class="" method="post" action="#">
-						
+											
 						<div class="form-group">
-							<label for="name">Your Name</label>
-								<div class="input-group">
-									<span class="input-group-addon"><i class="fa fa-user fa" aria-hidden="true"></i></span>
-									<input type="text" class="form-control" name="name" id="name"  placeholder="Enter your Name"/>
-							</div>
-						</div>
-
-						<div class="form-group">
-							<label for="email">Your Email</label>
+							<label for="email">Email</label>
 								<div class="input-group">
 									<span class="input-group-addon"><i class="fa fa-envelope fa" aria-hidden="true"></i></span>
-									<input type="text" class="form-control" name="email" placeholder="Enter your Email"/>
-							</div>
-						</div>
-
-						<div class="form-group">
-							<label for="username">Username</label>
-								<div class="input-group">
-									<span class="input-group-addon"><i class="fa fa-users fa" aria-hidden="true"></i></span>
-									<input type="text" class="form-control" name="username" placeholder="Enter your Username"/>
+									<input type="text" class="form-control" name="email" placeholder="Digite seu Email"/>
 								</div>
 						</div>
 
 						<div class="form-group">
-							<label for="password">Password</label>
+							<label for="password">Senha</label>
 								<div class="input-group">
 									<span class="input-group-addon"><i class="fa fa-lock fa-lg" aria-hidden="true"></i></span>
-									<input type="password" class="form-control" name="password" placeholder="Enter your Password"/>
+									<input type="password" class="form-control" name="password" placeholder="Digite sua senha"/>
 								</div>
 						</div>
-
-						<div class="form-group">
-							<label for="confirm">Confirm Password</label>
-								<div class="input-group">
-									<span class="input-group-addon"><i class="fa fa-lock fa-lg" aria-hidden="true"></i></span>
-									<input type="password" class="form-control" name="confirm" placeholder="Confirm your Password"/>
-								</div>
-						</div>
-
-						<button type="submit" class="btn-login">SUBMIT</button>
+						
+						<input type="checkbox" name="lembrar-me" id="lembrar-me"> lembrar-me <a class="float-rigth" href="#">Esqueceu sua senha?</a>
+						
+						<button type="submit" class="btn-login">Entrar</button>
 						
 					</form>
 				</div><!--end-login-->
 				<div class="main-center" style="display: none;">
-					<div id="btns-layout">
+					
+				<div id="btns-layout">
 						<button id="faz-login" class="btn-desative" onclick="#">Faça seu Login</button>
 						<button id="faz-cadastro" class="btn-active" onclick="#">Faça seu cadastro</button>
-					</div>
-					<h5>Sign up once and watch any of our free demos.</h5>
+					</div>					
+					
 					<form class="" method="post" action="#">
 						
 						<div class="form-group">
-							<label for="name">Your Name</label>
+							<label for="name">Seu Nome</label>
 								<div class="input-group">
-									<span class="input-group-addon"><i class="fa fa-user fa" aria-hidden="true"></i></span>
-									<input type="text" class="form-control" name="name" id="name"  placeholder="Enter your Name"/>
+								<span class="input-group-addon"><i class="fa fa-user fa" aria-hidden="true"></i></span>
+								<input type="text" class="form-control" name="name" id="name"  placeholder="Digite seu Name"/>
+							</div>
+						</div>
+						
+						<div class="form-group">
+							<label for="lastname">Seu sobrenome</label>
+							<div class="input-group">
+								<span class="input-group-addon"><i class="fa fa-user fa" aria-hidden="true"></i></span>
+								<input type="text" class="form-control" name="lastname" id="lastname"  placeholder="Digite seu sobrenome"/>
 							</div>
 						</div>
 
 						<div class="form-group">
-							<label for="email">Your Email</label>
-								<div class="input-group">
-									<span class="input-group-addon"><i class="fa fa-envelope fa" aria-hidden="true"></i></span>
-									<input type="text" class="form-control" name="email" placeholder="Enter your Email"/>
+							<label for="email">Seu Email</label>
+							<div class="input-group">
+								<span class="input-group-addon"><i class="fa fa-envelope fa" aria-hidden="true"></i></span>
+								<input type="text" class="form-control" name="email" placeholder="Digite seu Email"/>
 							</div>
 						</div>
 
 						<div class="form-group">
-							<label for="username">Username</label>
-								<div class="input-group">
-									<span class="input-group-addon"><i class="fa fa-users fa" aria-hidden="true"></i></span>
-									<input type="text" class="form-control" name="username" placeholder="Enter your Username"/>
-								</div>
+							<label for="CPF">Seu CPF</label>
+							<div class="input-group">
+								<span class="input-group-addon"><i class="fa fa-users fa" aria-hidden="true"></i></span>
+								<input type="text" class="form-control" name="CPF" placeholder="Digite seu CPF"/>
+							</div>
 						</div>
 
 						<div class="form-group">
-							<label for="password">Password</label>
+							<label for="password">Sua senha</label>
 								<div class="input-group">
 									<span class="input-group-addon"><i class="fa fa-lock fa-lg" aria-hidden="true"></i></span>
 									<input type="password" class="form-control" name="password" placeholder="Enter your Password"/>
@@ -110,14 +96,14 @@
 						</div>
 
 						<div class="form-group">
-							<label for="confirm">Confirm Password</label>
-								<div class="input-group">
-									<span class="input-group-addon"><i class="fa fa-lock fa-lg" aria-hidden="true"></i></span>
-									<input type="password" class="form-control" name="confirm" placeholder="Confirm your Password"/>
-								</div>
+							<label for="confirm">Confirme sua senha</label>
+							<div class="input-group">
+								<span class="input-group-addon"><i class="fa fa-lock fa-lg" aria-hidden="true"></i></span>
+								<input type="password" class="form-control" name="confirm" placeholder="Repita sua senha"/>
+							</div>
 						</div>
 
-						<button type="submit" class="btn-login">SUBMIT</button>
+						<button type="submit" class="btn-login">Cadastrar</button>
 						
 					</form>
 				</div><!--main-center"-->
