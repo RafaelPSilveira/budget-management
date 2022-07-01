@@ -3,7 +3,7 @@
     function login($login,$password,$connect){
         $result = [];
 
-        $sql = mysqli_query(mysqli_connect($connect),"SELECT email , password FROM user WHERE email = $login AND password = $password");
+        $sql = mysqli_query(mysqlConnection($connect),"SELECT email , password FROM user WHERE email = '$login' AND password = '$password'");
 
         if(mysqli_num_rows($sql) < 1){
             $result['success'] = false;
