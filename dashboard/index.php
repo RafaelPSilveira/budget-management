@@ -1,6 +1,7 @@
 <?php
     include('../functions/includes.php');
-    $dados = $_REQUEST;   
+    $dados = $_REQUEST;
+    
     $login = login($dados['email'],$dados['password'],$connect); 
 ?>
 <!DOCTYPE html>
@@ -17,6 +18,12 @@
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Righteous&family=Sarala:wght@400;700&display=swap" rel="stylesheet">
 </head>
 <body>
+    <?php 
+    if(empty( $dados['email']) && empty($dados['password'])){
+        header('location:../login-cadastro/index.php');
+        echo "voce precisa estar logado!";
+    }
+    else {?>
     <nav>
         <div class="container">
             <img src="img/logo.png" class="logo">
@@ -535,6 +542,9 @@
         </section>
              <!------------------------- END OF RIGHT ------------------------->
     </main>
+    <?php
+        }
+    ?>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.8.0/chart.min.js" integrity="sha512-sW/w8s4RWTdFFSduOTGtk4isV1+190E/GghVffMA9XczdJ2MDzSzLEubKAs5h0wzgSJOQTRYyaz73L3d6RtJSg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <script src="main.js"></script>
 </body>
