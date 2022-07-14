@@ -8,7 +8,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Relatórios</title>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="./dashboard/style.css">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Sharp" rel="stylesheet"> 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -29,7 +29,7 @@
                 </div>
                 <div class="profile">
                     <div class="profilePhoto">
-                        <img src="img/profile-2.jpg">
+                        <img src="./dashboard/img/profile-2.jpg">
                     </div>
                     <h5>Rafael</h5>
                     <span class="material-icons-sharp">expand_more</span>
@@ -47,7 +47,7 @@
                     <span class="material-icons-sharp">close</span>
                 </button>
                 <div class="sidebar">
-                    <a href="index.html">
+                    <a href="./dashboard/index.php">
                         <span class="material-icons-sharp">dashboard</span>
                         <h4>Dashboard</h4>
                     </a>

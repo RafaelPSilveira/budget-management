@@ -10,8 +10,8 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dashboard Responsive</title>
-    <link rel="stylesheet" href="style.css">
+    <title>Dashboard</title>
+    <link rel="stylesheet" href="./style.css">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Sharp" rel="stylesheet"> 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -69,7 +69,7 @@
                         <span class="material-icons-sharp">payment</span>
                         <h4>Lançamentos</h4>
                     </a-->
-                    <a href="relatorios.html" >
+                    <a href="../relatorios.php" >
                         <span class="material-icons-sharp">pie_chart</span>
                         <h4>Relatórios</h4>
                     </a>
@@ -328,9 +328,61 @@
                 </div>
             </div>
 
-            <!------------------------ END OF FAST PAYMENT ------------------------->
+            <!------------------------ END OF FAST REGISTER ------------------------->
+            <?php
 
-            <h1>Aqui vai a tabela</h1>
+
+            ?>
+            <div class = recent-orders>
+                <h2>Lançamentos Recentes</h2>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Nome</th>
+                            <th>Tipo</th>
+                            <th>Categoria</th>
+                            <th>Valor</th>
+                            <th>Data de Lançamento</th>
+                            <th>Observações</th>  
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Conta de Luz</td>
+                            <td>Despesas</td>
+                            <td>Fixas</td>
+                            <td>R$145,66</td>
+                            <td>10/05/2022</td>
+                            <td>Sem OBS</td>
+                        </tr>
+                        <tr>
+                            <td>Conta de agua</td>
+                            <td>Despesas</td>
+                            <td>Fixas</td>
+                            <td>R$55,66</td>
+                            <td>12/05/2022</td>
+                            <td>Sem OBS</td>
+                        </tr>
+                        <tr>
+                            <td>Mercado</td>
+                            <td>Despesa</td>
+                            <td>Variavel</td>
+                            <td>R$559,37</td>
+                            <td>10/05/2022</td>
+                            <td>Sem OBS</td>
+                        </tr>
+                        <tr>
+                            <td>Salario</td>
+                            <td>Receita</td>
+                            <td>Salario</td>
+                            <td>R$2.500,00</td>
+                            <td>10/05/2022</td>
+                            <td>Sem OBS</td>
+                        </tr>
+                    </tbody>
+                </table>
+                <a href="#">Ver Todas</a>
+            </div> 
 
         </section>
         
