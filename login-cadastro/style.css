@@ -69,6 +69,7 @@ span.input-group-addon i {
     margin: 10px auto;
     transition: all 300ms ease;
     border: 0px;
+    cursor: pointer;
 }
 
 .float-left {

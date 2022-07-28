@@ -1,9 +1,9 @@
 <?php
-    include('../functions/includes.php')
+    include('./functions/includes.php');
 ?>
 
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-br">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -22,7 +22,7 @@
 						<button id="faz-login" class="btn-active" onclick="">Faça seu Login</button>
 						<button id="faz-cadastro"class="btn-desative" onclick="">Faça seu cadastro</button>
 					</div>					
-					<form class="" method="post" action="../dashboard/index.php">
+					<form class="" method="post" action="../dashboard/./home.php">
 											
 						<div class="form-group">
 							<label for="email">Email</label>
