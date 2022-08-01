@@ -25,7 +25,7 @@
 
    function getTransactions ($connect){
     
-    $sql = mysqli_query(mysqlConnection($connect),"SELECT  * FROM releases ORDER BY id DESC");
+    $sql = mysqli_query(mysqlConnection($connect),"SELECT  * FROM releases ORDER BY id DESC LIMIT 5");
 
     while($user_data = mysqli_fetch_assoc($sql)){
         echo "<tr>";

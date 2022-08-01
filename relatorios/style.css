@@ -30,6 +30,7 @@
     --color-light:     #23232a;
     --color-dark:      #ddd; 
     --color-gray-dark: #adacb5;
+    --color-gray-light: #ddd;
 
 }
 
@@ -39,7 +40,7 @@
   outline: 0;
   border: 0;
   appearance: none;
-  text-decoration: none;  
+  text-decoration: none !important;  
   list-style: none;
   box-sizing: border-box;
 }
@@ -53,7 +54,6 @@ body{
     font-family: 'Poppins', sans-serif  !important;
     min-height: 100vh  !important;
     color: var(--color-dark)  !important;
-   
 }
 
 img{
@@ -102,7 +102,7 @@ small{
 }
 
 .danger{
-    color:var(--color-danger) !important;
+    color:var(--color-danger);
 }
 
 .success{
@@ -173,8 +173,9 @@ nav .container{
 
 nav img.logo{
     width: 3rem;
-    ;
+    float: inline-end;    ;
 }
+
 
 nav .profile-area{
     display: flex;
@@ -223,7 +224,7 @@ nav .profile-area .profilePhoto{
 }
 
 nav .profile-area button{
-    display: none;
+    display: none; 
 }
 
 /*============== ASIDE E SIDEBAR ==============*/
@@ -233,7 +234,6 @@ main{
     gap: 2rem;  
     width: 96%;
     margin: 1rem auto 4rem;
-    text-decoration: none;
 }
 
 main aside{
@@ -255,7 +255,7 @@ main aside .sidebar a{
     height: 4.2rem;
     color:var(--color-gray-light);
     position: relative;
-    text-decoration: none;
+   
     
 }
 
@@ -292,46 +292,6 @@ main aside .sidebar h4{
     font-weight: 500;
 }
 
-/*============== MIDDLE ==============*/
-
-main section.middle .header{
-    display: flex;
-    align-items: center;
-    gap: 1rem;
-}
-
-main section.middle .header input[type='date']{
-    padding: 1.5rem 2rem;
-    border-radius:var(--border-radius-2);
-    background: var(--color-white);
-    color: var(--color-gray-dark);
-}
-
-main section.middle .cards {
-    position: relative;
-    display: flex;
-    flex-direction: column;
-    word-wrap: break-word;
-    background: var(--color-white);
-    border: 1px solid rgba(0,0,0,.125);
-    border-radius: var(--border-radius-1);
-  
-}
-
-/*============== MONTHELY REPORT ==============*/
-
-main .monthly-report{
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 1rem;
-    justify-content: space-between;
-    margin-top: 2rem;
-}
-
-main .monthly-report h1{
-    font-weight: 700;
-    font-size: 1.8rem;
-}
 
 /*============== CANVAS ==============*/
 
@@ -343,23 +303,9 @@ canvas#chart{
     padding: var(--card-padding);
 }
 
-.btn-several{
-    display: block;
-    width: 10%;
-    background: var(--color-primary);
-    color: var(--color-white);
-    border-radius: var(--border-radius-1);
-    padding: 0.8rem 0;
-    margin-top: -2rem;
-    transition: all 300ms ease;
-    text-decoration: none !important;
-    text-align: center;
-    font-size: 85% !important;
-}
+/*============== INVESTMENTS ==============*/
 
-.btn-several:hover{
-    box-shadow: 0 1rem 2rem var(--color-primary-light);
-} 
+
 /*============== MEDIA QUERIES FOR TABLETS ==============*/
 
 @media screen and (max-width: 1024px){
@@ -460,3 +406,9 @@ canvas#chart{
         gap: 1.4rem;
     }
 }
+
+    
+
+
+
+

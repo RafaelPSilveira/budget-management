@@ -1,8 +1,8 @@
 :root{
-    --color-white:      #ffffff;
-    --color-light:      #f0eff5;
-    --color-gray-light: #86848c;
-    --color-gray-dark:  #56555e;
+    --color-white:      #ffffff  !important;
+    --color-light:      #f0eff5  !important;
+    --color-gray-light: #86848c  !important;
+    --color-gray-dark:  #56555e  !important;
     --color-dark:       #27282f;
     --color-primary:    rgb(71,7,234);
     --color-success:    rgb(34,202,75);
@@ -46,21 +46,21 @@
 }
 
 html{
-    font-size: 12px;
+    font-size: 12px !important;
 }
 
 body{
-    background: var(--color-light) !important;
-    font-family: 'Poppins', sans-serif;
-    min-height: 100vh;
-    color: var(--color-dark);
+    background: var(--color-light)  !important;
+    font-family: 'Poppins', sans-serif  !important;
+    min-height: 100vh  !important;
+    color: var(--color-dark)  !important;
 }
 
 img{
     width: 100%;
 }
 
-h1{
+/* h1{
     font-size: 1.5rem;
 }
 
@@ -86,11 +86,6 @@ h6{
 p{
     font-size: 0.86rem;
     color: var(--color-gray-dark);
-}
-
-small{
-    font-weight: 300;
-    font-size: 0.77rem;
 }
 
 .text-muted{
@@ -152,6 +147,11 @@ small{
 
 .bg-success-light{
     background: var(--color-success-light);
+} */
+
+small{
+    font-weight: 300;
+    font-size: 1.2rem !important;
 }
 
 /* ==== NAV BAR ====*/
@@ -172,7 +172,7 @@ nav .container{
 }
 
 nav img.logo{
-    width: 7rem;
+    width: 3rem !important;
     float: inline-end;    ;
 }
 
@@ -257,6 +257,7 @@ main{
     gap: 2rem;  
     width: 96%;
     margin: 1rem auto 4rem;
+    text-decoration: none;
 }
 
 main aside{
@@ -264,6 +265,7 @@ main aside{
     flex-direction: column;
     justify-content: space-between;
     height: 88vh;
+    
 }
 
 /*will be shown only mobile and tablets*/
@@ -278,21 +280,18 @@ main aside .sidebar a{
     height: 4.2rem;
     color:var(--color-gray-light);
     position: relative;
-   
-    
+    text-decoration: none;
 }
 
 main aside .sidebar a span{
     font-size: 1.7rem;
-    margin-left: 3rem;
+    margin-left: 1rem;
     transition: all 300ms ease;
-    
 }
 
 main aside .sidebar a.active{
     background: var(--color-white);
     color: var(--color-primary);
-    
 }
 
 main aside .sidebar a.active:before{
@@ -311,9 +310,9 @@ main aside .sidebar a:hover span{
     margin-left: 2rem;
 }
 
-main aside .sidebar h4{
+/* main aside .sidebar h4{
     font-weight: 500;
-}
+} */
 
 /*============== UPDATES ==============*/
 
@@ -346,10 +345,26 @@ main aside .updates a{
 main aside.updates a:hover{
     box-shadow: 0 1rem 2rem var(--color-primary-light);
 } */
+.btn-several{
+    display: block;
+    width: 10%;
+    background: var(--color-primary);
+    color: var(--color-white) !important;
+    border-radius: var(--border-radius-1);
+    padding: 0.6rem 0;
+    transition: all 300ms ease;
+    text-decoration: none !important;
+    text-align: center;
+    font-size: 85% !important;
+}
+
+.btn-several:hover{
+    box-shadow: 0 1rem 2rem var(--color-primary-light);
+}
 
 /*============== MIDDLE ==============*/
 
-main section.middle .header{
+/* main section.middle .header{
     display: flex;
     align-items: center;
     gap: 1rem;
@@ -360,7 +375,7 @@ main section.middle .header input[type='date']{
     border-radius:var(--border-radius-2);
     background: var(--color-white);
     color: var(--color-gray-dark);
-}
+} */
 
 main section.middle .cards {
     margin-top: 1rem;
@@ -379,7 +394,7 @@ main section.middle .cards .card{
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    box-shadow: 0 2rem 3rem var(--color-danger-light);
+    box-shadow: 0 2rem 3rem var(--color-gray-light);
     transition: all 300ms ease;
     min-width: 22rem;
     align-items: center;
@@ -387,12 +402,12 @@ main section.middle .cards .card{
 
 main section.middle .cards .card:nth-child(2){
     background: linear-gradient(#ff796f, #bd261b);
-    box-shadow: 0 2rem 3rem rgba(0,0,0,0.2);
+    box-shadow: 0 2rem 3rem var(--color-gray-light);
 }
 
 main section.middle .cards .card:nth-child(3){
     background: linear-gradient(#5d70ff, #4d16ad);
-    box-shadow: 0 2rem 3rem var(--color-primary-light);
+    box-shadow: 0 2rem 3rem var(--color-gray-light);
 }
 
 main section.middle .cards .card:hover{
@@ -408,12 +423,13 @@ main section.middle .card .top{
 main section.middle .card .top .left{
    display: flex;
    gap: 0.5rem;
+   align-items: center !important;
 }
 
-main section.middle .card .top .left h2{
+/* main section.middle .card .top .left h2{
     font-weight: 200;
     font-size: 1.4rem;
-}
+} */
 
 /* main section.middle .card .top .left img{
     width: 2.3rem;
@@ -427,19 +443,16 @@ main section.middle .card .top .left h2{
     width: 3.5rem;
 } */
 
-main section.middle .card .middle{
+/* main section.middle .card .middle{
     display: flex;
     justify-content: space-between;
-}
-
-/* main section.middle .card .middle .chip{
-    width: 3.5rem;;
+    
 } */
 
 main section.middle .card .bottom{
     display: flex;
     justify-content: space-between;
-    align-items: center;
+    font-size: 1.2rem;
 }
 
 main section.middle .card .bottom .right{
@@ -515,9 +528,16 @@ main .fast-register .badge div{
 }
 
 /*============== RECENT ORDERS ==============*/
+.card-header {
+    padding: 0.5rem 1rem;
+    margin-bottom: 0;
+    background: var(--color-white) !important;
+    border-radius: var(--border-radius-2);
+
+}
 
 main .recent-orders {
-    margin-top: 2rem;
+    margin-top: 0.2rem;
 }
 
 main .recent-orders h2{
@@ -527,7 +547,6 @@ main .recent-orders h2{
 main .recent-orders table{
     background: var(--color-white);
     width: 100%;
-    border-radius: var(--border-radius-2); 
     padding: var(--card-padding); 
     text-align: center;
     box-shadow: 0 2rem 3rem rgba(132,139,200,0.18);
@@ -797,9 +816,3 @@ main .recent-transactions .card-details .card{
         gap: 1.4rem;
     }
 }
-
-    
-
-
-
-

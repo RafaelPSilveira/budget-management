@@ -24,15 +24,15 @@
                     <span class="material-icons-sharp">close</span>
                 </button>
                 <div class="sidebar">
-                    <a href="./dashboard/home.php">
+                    <a href="../dashboard/home.php">
                         <span class="material-icons-sharp">dashboard</span>
                         <h4>Dashboard</h4>
                     </a>
-                    <a href="./relatorios.php" >
+                    <a href="../relatorios/relatorios.php" >
                         <span class="material-icons-sharp">pie_chart</span>
                         <h4>Relatórios</h4>
                     </a>
-                    <a href="#"class="active" >
+                    <a href="../lancamentos/lancamentos.php"class="active" >
                         <span class="material-icons-sharp">pie_chart</span>
                         <h4>Lançamentos</h4>
                     </a>
@@ -45,7 +45,7 @@
                 <div class="card">
                     <div class="card-header">
                         <h4>Novo Lançamento
-                            <a href="../dashboard/home.php" class="btn btn-danger float-end">VOLTAR</a>
+                            <a href="../lancamentos/lancamentos.php" class="btn-several float-end">VOLTAR</a>
                         </h4>
                     </div>
                     <div class="card-body">
@@ -54,6 +54,25 @@
                                 <label>Nome</label>
                                 <input type="text" name="name" class="form-control" placeholder="Nome da Despesa">
                             </div>
+
+                            <!-- <div class="mb-3">
+                                <label for="type">Tipo de Lançamento:  </label>
+                                <select id="type" name="tipo">
+                                    <option value="receita">Receita</option>
+                                    <option value="despesa">Despesa</option>
+                                </select> 
+                            </div> -->
+                             <!-- <div class="mb-3">
+                                <label for="category">Selecione a Categoria:</label>
+                                <select id="category" name="category">
+                                    <option value="receita">Despesas Fixas</option>
+                                    <option value="despesa">Alimentação</option>
+                                    <option value="despesa">Saúde</option>
+                                    <option value="despesa">Lazer</option>
+                                    <option value="despesa">Outros</option>
+                                </select> 
+                            </div> -->
+                                
                             <div class="mb-3">
                                 <label>Tipo</label>
                                 <input type="text" name="tipo" class="form-control" placeholder="Receita ou Despesa">
@@ -71,7 +90,7 @@
                                 <input type="text" name="obs" class="form-control" placeholder="Descrição detalhada (Opcional)">
                             </div>
                             <div class="mb-3">
-                                <button type="submit" name="save_include" class="btn btn-primary">Salvar</button>
+                                <button type="submit" name="save_include" class="btn-several"><b>SALVAR</b></button>
                             </div>
                     </div>
                 </div>

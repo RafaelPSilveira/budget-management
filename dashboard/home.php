@@ -41,7 +41,7 @@
                     <span class="material-icons-sharp">dashboard</span>
                     <h4>Dashboard</h4>
                 </a> 
-                <a href="../relatorios.php" >
+                <a href="../relatorios/relatorios.php" >
                     <span class="material-icons-sharp">pie_chart</span>
                     <h4>Relatórios</h4>
                 </a>
@@ -162,9 +162,16 @@
                 <!-- END OF TURNOVER REPORT-->
             </div>
             <!------------------------- END OF MONTLY REPORT ------------------------->
-            <!-- <button id="newTrans" class="btn-new">Novo Lançamento</button>
+            <!-- <div class="card-header">
+                <h4>Novo Lançamento
+                    <a href="../lancamentos/lancamentos.php" class="btn-several float-end">Lançar</a>
+                </h4>
+            </div> 
+            </br> -->
+
+            <!-- <button id="newTrans" class="btn-new">Novo Lançamento</button> -->
            
-            <div class="recent-orders">
+            <!--div class="recent-orders">
        
                 <div id="tableTrans" style="display: block;" class="recent-orders">
                     <table id="table">
@@ -219,9 +226,14 @@
 
             <!------------------------ END OF FAST REGISTER ------------------------->
            
+            <div class="card-header">
+                <div>
+                    <h4>Novo Lançamento
+                        <a href="../lancamentos/new-inclusion.php" class="btn-several float-end">Lançar</a>
+                    </h4>
+                </div>
+            </div>
             <div class = recent-orders>
-                <h2>Lançamentos Recentes</h2>
-  
                 <table>
                     <thead>
                         <tr>
@@ -241,7 +253,7 @@
 
                     </tbody>
                 </table>
-                <a href="../lancamentos/lancamentos.php">Ver Todas</a>
+                <a href="../lancamentos/lancamentos.php" class="btn-several">Ver Todas</a>
             </div> 
 
         </section>

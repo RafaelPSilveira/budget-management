@@ -29,7 +29,7 @@
                         <span class="material-icons-sharp">dashboard</span>
                         <h4>Dashboard</h4>
                     </a>
-                    <a href="./relatorios.php" >
+                    <a href="../relatorios/relatorios.php" >
                         <span class="material-icons-sharp">pie_chart</span>
                         <h4>Relatórios</h4>
                     </a>
@@ -44,7 +44,7 @@
 
         <section class="middle">
             <div class="header">
-                <h1>Período de: </h1>
+                <h2>Período de: </h2>
                 <input type="date">
                 <h2>a</h2>
                 <input type="date">
@@ -53,10 +53,10 @@
             <div class="container mt-4">
                 <div class="row">
                     <div class="col-md-12">
-                        <div class="card">
+                        <div class="cards">
                             <div class="card-header">
                                 <h4>Lançamentos</h4>
-                                <a href="./new-inclusion.php" class="btn btn-primary float-end">Novo Lançamento</a>
+                                <a href="./new-inclusion.php" class=" btn-several float-end">Novo Lançamento</a>
                             </div>
                         </div>
                         <div class="card-body">
@@ -87,10 +87,10 @@
                                                     <td><?= $release['date_release']?></td>
                                                     <td><?= $release['obs']?></td>
                                                     <td>
-                                                        <a href="<?=$release['id'];?>" class="btn btn-info btn-sm">Detalhes</a>
-                                                        <a href="edit.php?id=<?=$release['id'];?>" class="btn btn-success btn-sm">Editar</a>
+                                                        <a href="<?=$release['id'];?>" class="btn btn-info btn-sm"><span class="material-icons-sharp">visibility</span></a>
+                                                        <a href="edit.php?id=<?=$release['id'];?>" class="btn btn-success btn-sm"><span class="material-icons-sharp">edit</span></a>
                                                         <form action="../functions/functions.php" method="POST" class="d-inline">
-                                                            <button type="submit" name="delete_release" value="<?=$release['id'];?>" class="btn btn-danger btn-sm">Excluir</button>
+                                                            <button type="submit" name="delete_release" value="<?=$release['id'];?>" class="btn btn-danger btn-sm"><span class="material-icons-sharp">delete_forever</span></button>
                                                         </form>
                                                     </td>
                                                 </tr>
@@ -98,7 +98,7 @@
 
                                             }
                                     }else{
-                                            echo "<h5> No Record Found </h5>";
+                                            echo "<h5> Registros não encontrados!!! </h5>";
                                     }
                                     ?>
                                 
@@ -117,206 +117,18 @@
         <section class="right">
             <div class="investments">
                 <div class="header">
-                    <h2>Proximas despesas (Analizar)</h2>
-                    <a href="#">More <span class="material-icons-sharp">chevron_right</span></a>
+                    <h2>Receitas X Despesas</h2>
                 </div>
 
-                <div class="investment">
-                    <img src="img/uniliver.png">
-                    <h4>Unilever</h4>
-                    <div class="data-time">
-                        <p>7 Nov, 2021</p>
-                        <small class="text-muted">9:14pm</small>
-                    </div>
-                    <div class="bonds">
-                        <p>1402</p>
-                        <small class="text-muted">Bonds</small>                        
-                    </div>
-                    <div class="amount">
-                        <h4>$20,033</h4>
-                        <small class="danger">-4.27%</small>
-
-                    </div>
+                
+                <div class="header">
+                    <canvas id="saldo" style="width:100%;max-width:600px"></canvas>
                 </div>
-                <!-- END OF INVESTMENT-->
-                <div class="investment">
-                    <img src="img/tesla.png">
-                    <h4>Tesla</h4>
-                    <div class="data-time">
-                        <p>1 Dec, 2021</p>
-                        <small class="text-muted">11:54am</small>
-                    </div>
-                    <div class="bonds">
-                        <p>5377</p>
-                        <small class="text-muted">Bonds</small>                        
-                    </div>
-                    <div class="amount">
-                        <h4>$720,110</h4>
-                        <small class="success">+38.27%</small>
-
-                    </div>
-                </div>
-                <!-- END OF INVESTMENT-->
-                <div class="investment">
-                    <img src="img/monster.png">
-                    <h4>Unilever</h4>
-                    <div class="data-time">
-                        <p>1 Dec, 2021</p>
-                        <small class="text-muted">4:02pm</small>
-                    </div>
-                    <div class="bonds">
-                        <p>700</p>
-                        <small class="text-muted">Bonds</small>                        
-                    </div>
-                    <div class="amount">
-                        <h4>$13,110</h4>
-                        <small class="success">+7.27%</small>
-
-                    </div>
-                </div>
-                <!-- END OF INVESTMENT-->
-                <div class="investment">
-                    <img src="img/mcdonalds.png">
-                    <h4>McDonalds</h4>
-                    <div class="data-time">
-                        <p>3 Dec, 2021</p>
-                        <small class="text-muted">8:17pm</small>
-                    </div>
-                    <div class="bonds">
-                        <p>5200</p>
-                        <small class="text-muted">Bonds</small>                        
-                    </div>
-                    <div class="amount">
-                        <h4>$20,033</h4>
-                        <small class="danger">-1,02%</small>
-
-                    </div>
-                </div>
-                <!-- END OF INVESTMENT-->
-            </div>
+                
+                
             <!-- END OF INVESTMENTS-->
 
-            <div class="recent-transactions">
-                <div class="header">
-                    <h2>Ultimos Registos (analizar)</h2>
-                    <a href="#">More <span class="material-icons-sharp">chevron_right</span></a></a>
-                </div>
-
-                <div class="transactions">
-                    <div class="service">
-                        <div class="icon bg-purple-light">
-                            <span class="material-icons-sharp purple">headphones</span></a>
-                        </div>
-                        <div class="details">
-                            <h4>Music</h4>
-                            <p>20.11.2021</p>
-                        </div>
-                    </div>
-                    <div class="card-details">
-                        <div class="card bg-danger">
-                            <img src="img/visa.png">
-                        </div>
-                        <div class="details">
-                            <p>*2757</p>
-                            <small class="text-muted">Credit Card</small>
-                        </div>
-                    </div>
-                    <h4>-$20</h4>
-                </div>
-                 <!-- END OF TRANSACTION-->
-
-                 <div class="transactions">
-                    <div class="service">
-                        <div class="icon bg-purple-light">
-                            <span class="material-icons-sharp purple">shopping_bag</span></a>
-                        </div>
-                        <div class="details">
-                            <h4>Shopping</h4>
-                            <p>19.11.2021</p>
-                        </div>
-                    </div>
-                    <div class="card-details">
-                        <div class="card bg-primary">
-                            <img src="img/visa.png">
-                        </div>
-                        <div class="details">
-                            <p>*1920</p>
-                            <small class="text-muted">Credit Card</small>
-                        </div>
-                    </div>
-                    <h4>-$799</h4>
-                </div>
-                 <!-- END OF TRANSACTION-->
-
-                 <div class="transactions">
-                    <div class="service">
-                        <div class="icon bg-success-light">
-                            <span class="material-icons-sharp success">restaurant</span></a>
-                        </div>
-                        <div class="details">
-                            <h4>Restaurant</h4>
-                            <p>19.11.2021</p>
-                        </div>
-                    </div>
-                    <div class="card-details">
-                        <div class="card bg-danger">
-                            <img src="img/master card.png">
-                        </div>
-                        <div class="details">
-                            <p>*8273</p>
-                            <small class="text-muted">Credit Card</small>
-                        </div>
-                    </div>
-                    <h4>-$50</h4>
-                </div>
-                 <!-- END OF TRANSACTION-->
-
-                 <div class="transactions">
-                    <div class="service">
-                        <div class="icon bg-danger-light">
-                            <span class="material-icons-sharp danger">sports_esports</span></a>
-                        </div>
-                        <div class="details">
-                            <h4>Games</h4>
-                            <p>15.11.2021</p>
-                        </div>
-                    </div>
-                    <div class="card-details">
-                        <div class="card bg-danger">
-                            <img src="img/visa.png">
-                        </div>
-                        <div class="details">
-                            <p>*2757</p>
-                            <small class="text-muted">Credit Card</small>
-                        </div>
-                    </div>
-                    <h4>-$44</h4>
-                </div>
-                 <!-- END OF TRANSACTION-->
-                 <div class="transactions">
-                    <div class="service">
-                        <div class="icon bg-danger-light">
-                            <span class="material-icons-sharp danger">medication</span></a>
-                        </div>
-                        <div class="details">
-                            <h4>Pharmacy</h4>
-                            <p>15.11.2021</p>
-                        </div>
-                    </div>
-                    <div class="card-details">
-                        <div class="card bg-primary">
-                            <img src="img/visa.png">
-                        </div>
-                        <div class="details">
-                            <p>*1920</p>
-                            <small class="text-muted">Credit Card</small>
-                        </div>
-                    </div>
-                    <h4>-$30</h4>
-                </div>
-                 <!-- END OF TRANSACTION-->
-            </div>
-            <!-- END OF RECENT TRANSACTIONS-->
+            
         </section>
              <!------------------------- END OF RIGHT ------------------------->
     </main>
