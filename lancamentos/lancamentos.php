@@ -74,7 +74,7 @@
                                 <tbody>
                                     <?php
                                     $query = "SELECT * FROM releases";
-                                    $query_run =  mysqli_query($connect2,$query);
+                                    $query_run =  mysqli_query(mysqlConnection($connect),$query);
 
                                     if(mysqli_num_rows($query_run) > 0){
                                             foreach($query_run as $release){

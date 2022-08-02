@@ -2,6 +2,8 @@
     
     session_start();
 
+    include('../model/connetcDB.php');
+    
     function login($login,$password,$connect){
         $result = [];
 
@@ -40,66 +42,70 @@
 //--------------------------------SAVE----------------------------------\\
 
    if(isset($_POST['save_include'])){
-    $name      = mysqli_real_escape_string($connect2, $_POST['name']);
-    $tipo      = mysqli_real_escape_string($connect2, $_POST['tipo']);
-    $categoria = mysqli_real_escape_string($connect2, $_POST['categoria']);
-    $valor     = mysqli_real_escape_string($connect2, $_POST['value']);
-    $obs       = mysqli_real_escape_string($connect2, $_POST['obs']);
-    
-    $query = "INSERT INTO releases (name_include,type,category,value,obs) VALUES ('$name','$tipo','$categoria','$valor','$obs')";
+   
+        $name      = mysqli_real_escape_string(mysqlConnection($connect), $_POST['name']);
+        $tipo      = mysqli_real_escape_string(mysqlConnection($connect), $_POST['tipo']);
+        $categoria = mysqli_real_escape_string(mysqlConnection($connect), $_POST['categoria']);
+        $valor     = mysqli_real_escape_string(mysqlConnection($connect), $_POST['value']);
+        $obs       = mysqli_real_escape_string(mysqlConnection($connect), $_POST['obs']);
+        
+        $query = "INSERT INTO releases (name_include,type,category,value,obs) VALUES ('$name','$tipo','$categoria','$valor','$obs')";
 
-    $query_run = mysqli_query($connect2,$query);
-    if($query_run){
-        $_SESSION['message'] = "Salvo";
-        header("Location: ../lancamentos/new-inclusion.php");
-        exit(0);
-    }else{
-        $_SESSION['message'] = "Erro";
-        header("Location: ../dashboard/home.php");
-        exit(0);
+        $query_run = mysqli_query(mysqlConnection($connect),$query);
+        if($query_run){
+            $_SESSION['message'] = "Salvo";
+            header("Location: ../lancamentos/new-inclusion.php");
+            exit(0);
+        }else{
+            $_SESSION['message'] = "Erro";
+            header("Location: ../dashboard/home.php");
+            exit(0);
+        }
     }
-}
 
 //--------------------------------UPDATE----------------------------------\\
+    
+    if(isset($_POST['update_register'])){
+        
+        $register_id = mysqli_real_escape_string(mysqlConnection($connect), $_POST['register_id']);
+        $name        = mysqli_real_escape_string(mysqlConnection($connect), $_POST['name']);
+        $tipo        = mysqli_real_escape_string(mysqlConnection($connect), $_POST['tipo']);
+        $categoria   = mysqli_real_escape_string(mysqlConnection($connect), $_POST['categoria']);
+        $valor       = mysqli_real_escape_string(mysqlConnection($connect), $_POST['valor']);
+        $obs         = mysqli_real_escape_string(mysqlConnection($connect), $_POST['obs']);
 
-if(isset($_POST['update_register'])){
-    $register_id = mysqli_real_escape_string($connect2, $_POST['register_id']);
-    $name        = mysqli_real_escape_string($connect2, $_POST['name']);
-    $tipo        = mysqli_real_escape_string($connect2, $_POST['tipo']);
-    $categoria   = mysqli_real_escape_string($connect2, $_POST['categoria']);
-    $valor       = mysqli_real_escape_string($connect2, $_POST['value']);
-    $obs         = mysqli_real_escape_string($connect2, $_POST['obs']);
+        
 
-    $query = "UPDATE releases SET name_include='$name', type='$tipo', category='$categoria', value='$valor', obs='$obs' WHERE id='$register_id'";
+        $query = "UPDATE releases SET name_include='$name', type='$tipo', category='$categoria', value='$valor', obs='$obs' WHERE id='$register_id'";
 
-    $query_run = mysqli_query($connect2, $query); 
+        $query_run = mysqli_query(mysqlConnection($connect), $query); 
 
-    if($query_run){
-        $_SESSION['message'] = "Registro atualizado com sucesso";
-        header("Location: ./lancamentos.php");
-        exit(0);
-    }else{
-        $_SESSION['message'] = "Não foi possivel atualizar este registro";
-        header("Location: ./lancamentos.php");
-        exit(0);
-    }
+        if($query_run){
+            $_SESSION['message'] = "Registro atualizado com sucesso";
+            header("Location: ../lancamentos/lancamentos.php");
+            exit(0);
+        }else{
+            $_SESSION['message'] = "Não foi possivel atualizar este registro";
+            header("Location: ../lancamentos/lancamentos.php");
+            exit(0);
+        }
     }
 
 //--------------------------------DELETE----------------------------------\\
 
     if(isset($_POST['delete_release'])){
-        $release_id = mysqli_real_escape_string($connect2, $_POST['delete_release']);
+        $release_id = mysqli_real_escape_string(mysqlConnection($connect), $_POST['delete_release']);
     
         $query = "DELETE FROM releases WHERE id='$release_id'";
-        $query_run = mysqli_query($connect2, $query);
+        $query_run = mysqli_query(mysqlConnection($connect), $query);
     
         if($query_run){
             $_SESSION['message'] = "Lançamento excluido com sucesso";
-            header("Location: index.php");
+            header("Location: ../lancamentos/lancamentos.php");
             exit(0);
         }else{
             $_SESSION['message'] = "ERRO! Este lançamento não foi excluido";
-            header("Location: index.php");
+            header("Location: ../lancamentos/lancamentos.php");
             exit(0);
         }
     }

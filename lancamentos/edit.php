@@ -43,9 +43,9 @@
 
         <?php
             if(isset($_GET['id'])){
-                $register_id = mysqli_real_escape_string($connect2,$_GET['id']);
+                $register_id = mysqli_real_escape_string(mysqlConnection($connect),$_GET['id']);
                 $query       = "SELECT * FROM releases WHERE id='$register_id'";
-                $query_run   = mysqli_query($connect2, $query);
+                $query_run   = mysqli_query(mysqlConnection($connect), $query);
                 
                 if(mysqli_num_rows($query_run) > 0){
                     $register = mysqli_fetch_array($query_run);
@@ -67,11 +67,11 @@
                         </div>
                         <div class="mb-3">
                             <label>Valor</label>
-                            <input type="text" name="valor" value="<?=$register['value']?>"class="form-control">
+                            <input type="text" name="valor" value="<?=$register['value'];?>"class="form-control">
                         </div>
                         <div class="mb-3">
                             <label>Descrição</label>
-                            <input type="text" name="obs" value="<?=$register['obs']?>"class="form-control">
+                            <input type="text" name="obs" value="<?=$register['obs'];?>"class="form-control">
                         </div>
                         <div class="mb-3">
                             <button type="submit" name="update_register" class="btn btn-primary">Atualizar</button>

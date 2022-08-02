@@ -1,5 +1,5 @@
 <?php
-    include('./functions/includes.php');
+    include('../functions/includes.php');
 ?>
 
 <!DOCTYPE html>
