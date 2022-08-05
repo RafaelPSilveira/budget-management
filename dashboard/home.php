@@ -1,9 +1,8 @@
 <?php
     include('../functions/includes.php');
     $dados = $_REQUEST;
-
     
-    $login = login($dados['email'],$dados['password'],$connect); 
+    $login = login($dados['email'],$dados['password'],$connect);    
 ?>
 <!DOCTYPE html>
 <html lang="pt-br">

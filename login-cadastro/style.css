@@ -9,7 +9,7 @@ body {
     height: 34px;
 }
 
-.btn-active {
+.btn-layout.active {
     display: inline-block;
     background: #F0EFF5;
     color: rgb(71, 7, 234);
@@ -20,7 +20,7 @@ body {
     float: left;
 }
 
-.btn-desative {
+.btn-layout {
     display: inline-block;
     background: #F0EFF5;
     color: #86848c;
@@ -28,6 +28,7 @@ body {
     transition: all 300ms ease;
     border: 0px;
     float: right;
+    cursor: pointer;
     /* border-left: solid 6px rgb(71, 7, 234); */
 }
 
@@ -54,12 +55,16 @@ body {
     box-shadow: 0px 3px 5px 0px rgba(0, 0, 0, 0.31);
 }
 
+#main-cadastro {
+    display: none;
+}
+
 span.input-group-addon i {
     color: #009edf;
     font-size: 17px;
 }
 
-.btn-login {
+.btn-submit {
     display: block;
     width: 45%;
     background: rgb(71, 7, 234);

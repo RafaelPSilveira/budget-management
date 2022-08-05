@@ -1,5 +1,6 @@
 <?php
     include('../functions/includes.php');
+	$cadastrar = cadastrar($connect); 
 ?>
 
 <!DOCTYPE html>
@@ -17,12 +18,12 @@
 
 <div class="container">
 			<div class="main">
-				<div class="main-center margin-login">
+				<div id="main-login" class="main-center margin-login">
 					<div id="btns-layout">
-						<button id="faz-login" class="btn-active" onclick="">Faça seu Login</button>
-						<button id="faz-cadastro"class="btn-desative" onclick="">Faça seu cadastro</button>
+						<button id="faz-login" class="btn-login btn-layout active" >Faça seu Login</button>
+						<button id="faz-cadastro"class="btn-cadastro btn-layout" >Faça seu cadastro</button>
 					</div>					
-					<form class="" method="post" action="../dashboard/./home.php">
+					<form class="" method="post" action="../dashboard/home.php">
 											
 						<div class="form-group">
 							<label for="email">Email</label>
@@ -42,18 +43,18 @@
 						
 						<input type="checkbox" name="lembrar-me" id="lembrar-me"> lembrar-me <a class="float-rigth" href="#">Esqueceu sua senha?</a>
 						
-						<button type="submit" class="btn-login">Entrar</button>
+						<button type="submit" class="btn-submit">Entrar</button>
 						
 					</form>
 				</div><!--end-login-->
-				<div class="main-center" style="display: none;">
+				<div id="main-cadastro" class="main-center" >
 					
 				<div id="btns-layout">
-						<button id="faz-login" class="btn-desative" onclick="">Faça seu Login</button>
-						<button id="faz-cadastro" class="btn-active" onclick="">Faça seu cadastro</button>
+						<button id="faz-login" class="btn-login btn-layout" >Faça seu Login</button>
+						<button id="faz-cadastro" class="btn-cadastro btn-layout active" >Faça seu cadastro</button>
 					</div>					
 					
-					<form class="" method="post" action="#">
+					<form id="form-cadastro" class="" method="POST" action="">
 						
 						<div class="form-group">
 							<label for="name">Seu Nome</label>
@@ -103,7 +104,8 @@
 							</div>
 						</div>
 
-						<button type="submit" class="btn-login">Cadastrar</button>
+						<button type="submit" name='submit' class="btn-submit">Cadastrar</button>
+						
 						
 					</form>
 				</div><!--main-center"-->
@@ -113,5 +115,6 @@
         
         <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
         <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+		<script src="login.js"></script>
 </body>
 </html>

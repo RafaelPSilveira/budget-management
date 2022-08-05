@@ -1,6 +1,7 @@
 <?php
    
     include('../functions/includes.php');
+
 ?>
 <!DOCTYPE html>
 <html lang="pt-br">

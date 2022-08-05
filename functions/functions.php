@@ -18,15 +18,50 @@
             $result['msg'] = 'Login efetuado com sucesso!';                        
         }
 
+        $arrLogin = [
+            'email' => $login,
+            'password' => $password
+        ];       
+
+        montaSessao($arrLogin);
         
 
         return $result;
     }
 
+
+    function montaSessao($arrLogin){
+        if(count($arrLogin) <= 0) return false;        
+
+        foreach($arrLogin as $key => $value){
+            $_SESSION[$key] = $value;
+        }       
+        
+    }
+
+
+    function cadastrar($connect){  
+        if(isset($_POST['submit'])){
+            $name      = $_REQUEST['name'];
+            $lastname  = $_REQUEST['lastname'];
+            $email     = $_REQUEST['email'];
+            $cpf       = $_REQUEST['CPF'];
+            $password  = $_REQUEST['password'];        
+        
+            $result = mysqli_query(mysqlConnection($connect), "INSERT INTO user(name,last_name,email,password,cpf) VALUES('$name','$lastname','$email','$password','$cpf')");
+        
+            var_dump($result);
+            die;
+        
+            header('Location: ../login-cadastro/index.php');    
+        }
+        
+    }
+
 //------------------------------------------------------------------\\
 
-   function getTransactions ($connect){
-    
+    function getTransactions ($connect){
+
     $sql = mysqli_query(mysqlConnection($connect),"SELECT  * FROM releases ORDER BY id DESC LIMIT 5");
 
     while($user_data = mysqli_fetch_assoc($sql)){
@@ -38,11 +73,13 @@
         echo "<td>".$user_data['date_release']."</td>";
         echo "<td>".$user_data['obs']."</td>";   
         }
-   } 
-//--------------------------------SAVE----------------------------------\\
+    } 
+    //--------------------------------SAVE----------------------------------\\
 
-   if(isset($_POST['save_include'])){
-   
+
+
+    if(isset($_POST['save_include'])){
+
         $name      = mysqli_real_escape_string(mysqlConnection($connect), $_POST['name']);
         $tipo      = mysqli_real_escape_string(mysqlConnection($connect), $_POST['tipo']);
         $categoria = mysqli_real_escape_string(mysqlConnection($connect), $_POST['categoria']);
@@ -63,8 +100,8 @@
         }
     }
 
-//--------------------------------UPDATE----------------------------------\\
-    
+    //--------------------------------UPDATE----------------------------------\\
+        
     if(isset($_POST['update_register'])){
         
         $register_id = mysqli_real_escape_string(mysqlConnection($connect), $_POST['register_id']);
@@ -91,14 +128,14 @@
         }
     }
 
-//--------------------------------DELETE----------------------------------\\
+    //--------------------------------DELETE----------------------------------\\
 
     if(isset($_POST['delete_release'])){
         $release_id = mysqli_real_escape_string(mysqlConnection($connect), $_POST['delete_release']);
-    
+
         $query = "DELETE FROM releases WHERE id='$release_id'";
         $query_run = mysqli_query(mysqlConnection($connect), $query);
-    
+
         if($query_run){
             $_SESSION['message'] = "Lançamento excluido com sucesso";
             header("Location: ../lancamentos/lancamentos.php");
@@ -109,9 +146,4 @@
             exit(0);
         }
     }
-
-
-
-
-   
-   
+?>
