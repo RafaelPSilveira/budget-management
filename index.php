@@ -10,14 +10,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="css/style.css">
 	<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Righteous&family=Sarala:wght@400;700&display=swap" rel="stylesheet">
 </head>
 <body>
 
 <div class="container">
 			<div class="main">
-				<div class="main-center margin-login">
+				<div class="main-center margin-login d-flex flex-column">
 					<div id="btns-layout">
 						<button id="faz-login" class="btn-active" onclick="">Faça seu Login</button>
 						<button id="faz-cadastro"class="btn-desative" onclick="">Faça seu cadastro</button>
