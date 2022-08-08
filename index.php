@@ -1,5 +1,5 @@
 <?php
-    include('./functions/includes.php');
+    // include('./functions/includes.php');
 ?>
 
 <!DOCTYPE html>
@@ -46,52 +46,36 @@
 						
 					</form>
 				</div><!--end-login-->
-				<div class="main-center" style="display: none;">
+				<div class="main-center" style="">
 					
 				<div id="btns-layout">
 						<button id="faz-login" class="btn-desative" onclick="">Faça seu Login</button>
 						<button id="faz-cadastro" class="btn-active" onclick="">Faça seu cadastro</button>
 					</div>					
 					
-					<form class="" method="post" action="#">
+					<form class="">
 						
 						<div class="form-group">
-							<label for="name">Seu Nome</label>
+							<label for="user">Usuário</label>
 								<div class="input-group">
 								<span class="input-group-addon"><i class="fa fa-user fa" aria-hidden="true"></i></span>
-								<input type="text" class="form-control" name="name" id="name"  placeholder="Digite seu Name"/>
+								<input type="text" class="form-control" name="user" id="user"  placeholder="Digite seu nome de usuário"/>
 							</div>
-						</div>
-						
-						<div class="form-group">
-							<label for="lastname">Seu sobrenome</label>
-							<div class="input-group">
-								<span class="input-group-addon"><i class="fa fa-user fa" aria-hidden="true"></i></span>
-								<input type="text" class="form-control" name="lastname" id="lastname"  placeholder="Digite seu sobrenome"/>
-							</div>
-						</div>
+						</div>	
 
 						<div class="form-group">
 							<label for="email">Seu Email</label>
 							<div class="input-group">
 								<span class="input-group-addon"><i class="fa fa-envelope fa" aria-hidden="true"></i></span>
-								<input type="text" class="form-control" name="email" placeholder="Digite seu Email"/>
+								<input type="email" class="form-control" name="email" id="email" placeholder="Digite seu Email"/>
 							</div>
-						</div>
-
-						<div class="form-group">
-							<label for="CPF">Seu CPF</label>
-							<div class="input-group">
-								<span class="input-group-addon"><i class="fa fa-users fa" aria-hidden="true"></i></span>
-								<input type="text" class="form-control" name="CPF" placeholder="Digite seu CPF"/>
-							</div>
-						</div>
+						</div>					
 
 						<div class="form-group">
 							<label for="password">Sua senha</label>
 								<div class="input-group">
 									<span class="input-group-addon"><i class="fa fa-lock fa-lg" aria-hidden="true"></i></span>
-									<input type="password" class="form-control" name="password" placeholder="Enter your Password"/>
+									<input type="password" class="form-control" name="password" id="password" placeholder="Enter your Password"/>
 								</div>
 						</div>
 
@@ -99,11 +83,11 @@
 							<label for="confirm">Confirme sua senha</label>
 							<div class="input-group">
 								<span class="input-group-addon"><i class="fa fa-lock fa-lg" aria-hidden="true"></i></span>
-								<input type="password" class="form-control" name="confirm" placeholder="Repita sua senha"/>
+								<input type="password" class="form-control" name="confirm" id="confirm" placeholder="Repita sua senha"/>
 							</div>
 						</div>
 
-						<button type="submit" class="btn-login">Cadastrar</button>
+						<button type="button" class="btn-login" onclick="register()">Cadastrar</button>
 						
 					</form>
 				</div><!--main-center"-->
@@ -113,5 +97,8 @@
         
         <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
         <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+		<script src="//cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+		<script src="js/loginRegister.js"></script>
+		<!-- <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script> -->
 </body>
 </html>
