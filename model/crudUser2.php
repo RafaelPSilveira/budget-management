@@ -1,22 +1,17 @@
 <?php
-    // include('connectDB.php');
-    header("Content-Type: application/json;");
+    // include ('connectDB.php');
+    $data = $_REQUEST;
     $userDB = 'root';
     $passwordDB = '';    
+
     $pdo = new PDO("mysql:host=localhost;dbname=budget-management", $userDB, $passwordDB);
-    $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-    
-    // $success = [
-    //     'sugccess' => false,
-    //     'msg' => 'Error'
-    // ];   
-    
-   
     $user = $_REQUEST['user'];
     $email = $_REQUEST['email'];
-    $password = $_REQUEST['password'];
+    $password = $_REQUEST['password'];  
+
+
     try{
-        if(empty($_REQUEST)){
+        if(empty($data)){
             $success['success'] = false;
             echo $success['msg'];
         }else{                             
@@ -26,11 +21,9 @@
             'email' => $email,
             'password' => $password,
             ]);
+            header('location: ../index.php');
+            return $success['succes'] = true;
         }
     }catch(PDOException $e){
         echo 'Error'.$e->getMessage();                
     }
-    
-
-    // header("Content-Type: application/json;");
-    echo json_encode($success);

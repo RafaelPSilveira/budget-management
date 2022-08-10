@@ -53,7 +53,7 @@
 						<button id="faz-cadastro" class="btn-active" onclick="">Faça seu cadastro</button>
 					</div>					
 					
-					<form class="">
+					<form id="form-register" method="POST" action="./model/crudUser2.php">
 						
 						<div class="form-group">
 							<label for="user">Usuário</label>
@@ -87,7 +87,7 @@
 							</div>
 						</div>
 
-						<button type="button" class="btn-login" onclick="register()">Cadastrar</button>
+						<button type="submit" id="btn-register" class="btn-login">Cadastrar</button>
 						
 					</form>
 				</div><!--main-center"-->
@@ -97,8 +97,8 @@
         
         <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
         <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-		<script src="//cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
-		<script src="js/loginRegister.js"></script>
+		<!-- <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script> -->
+		<script src="js/js.js"></script>
 		<!-- <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script> -->
 </body>
 </html>

@@ -1,17 +1,53 @@
-async function register() {
+btnRegister = document.getElementById('btn-register');
+btnRegister.addEventListener('click', function() {
 
 
+    const register = async() => {
 
-    try {
+        try {
+            let user = document.getElementById('user').value;
+            let email = document.getElementById('email').value;
+            let password = document.getElementById('password').value;
+            let confirmPass = document.getElementById('confirm').value
 
-        let user = document.getElementById('user').value;
-        let email = document.getElementById('email').value;
-        let password = document.getElementById('password').value;
-        var params = { user: user, email: email, password: password };
+            if (password != confirmPass) {
 
-        await axios.post("../model/crudUser.php", params, { params: { type: "create_user" } }, { headers: { 'Content-type': 'application/json' } });
+                console.log('senhas diferentes!!')
 
-    } catch (err) {
-        console.log(err);
+            } else {
+
+
+                var params = { 'user': user, 'email': email, 'password': password };
+
+                await axios.post("../model/crudUser.php", params, { params: { type: 'create_user' } }, { headers: { 'Content-type': 'application/json' } });
+
+            }
+
+
+        } catch (err) {
+            console.log(err);
+        }
     }
-}
+
+    register();
+
+})
+
+// async function register() {
+
+
+
+//     try {
+
+//         let user = document.getElementById('user').value;
+//         let email = document.getElementById('email').value;
+//         let password = document.getElementById('password').value;
+//         var params = { user: user, email: email, password: password };
+
+//         await axios.post("../model/crudUser.php", params, { params: { type: "create_user" } }, { headers: { 'Content-type': 'application/json' } });
+
+//     } catch (err) {
+//         console.log(err);
+//     }
+// }
+// register()
