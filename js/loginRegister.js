@@ -19,7 +19,9 @@ btnRegister.addEventListener('click', function() {
 
                 var params = { 'user': user, 'email': email, 'password': password };
 
-                await axios.post("../model/crudUser.php", params, { params: { type: 'create_user' } }, { headers: { 'Content-type': 'application/json' } });
+                await axios.post("model/crudUser.php", params, { params: { type: 'create_user' } }, { headers: { 'Content-type': 'application/json' } }).then(() => {
+
+                });
 
             }
 
@@ -33,21 +35,19 @@ btnRegister.addEventListener('click', function() {
 
 })
 
-// async function register() {
+const btnLogin = document.querySelector('#faz-login');
+const btnCadastrar = document.querySelector('#faz-cadastro');
+const containerLogin = document.querySelector('#login-container');
+const containerCadastro = document.querySelector('#cadastro-container');
 
 
 
-//     try {
+function loginVisivel() {
+    containerLogin.style.display = 'block';
+    containerCadastro.style.display = 'none';
+}
 
-//         let user = document.getElementById('user').value;
-//         let email = document.getElementById('email').value;
-//         let password = document.getElementById('password').value;
-//         var params = { user: user, email: email, password: password };
-
-//         await axios.post("../model/crudUser.php", params, { params: { type: "create_user" } }, { headers: { 'Content-type': 'application/json' } });
-
-//     } catch (err) {
-//         console.log(err);
-//     }
-// }
-// register()
+function cadastroVisivel() {
+    containerCadastro.style.display = 'block';
+    containerLogin.style.display = 'none';
+}
