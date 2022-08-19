@@ -117,7 +117,7 @@
             <div class="last-releases ">
                     <div class=" newRelease d-flex d-inline justify-content-between align-items-center">
                         <h4>Novo Lançamento</h4>
-                        <a href="../lancamentos/new-inclusion.php" class="btn-several float-end">Lançar</a>
+                        <a href="../pages/releases.php" class="btn-several float-end">Lançar</a>
                     </div>
                 </div>
                 <div class = recent-orders>
@@ -133,7 +133,10 @@
                             </tr>
                         </thead>
                         <tbody>
+                            <?php
+                                // $getTransactions=  getTransactions ($connect);
                             
+                            ?>
                         </tbody>
                     </table>
                     <a href="../pages/releases.php" class="btn-several">Ver Todas</a>
