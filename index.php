@@ -53,7 +53,7 @@
 						<button id="faz-cadastro" class="btn-active" onclick="cadastroVisivel()">Faça seu cadastro</button>
 					</div>					
 					
-					<form id="form-register" method="POST" action="./model/crudUser2.php">
+					<form id="form-register" method="POST" action="./model/crudUser.php">
 						
 						<div class="form-group">
 							<label for="user">Usuário</label>
@@ -97,7 +97,7 @@
         
         <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
         <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-		<!-- <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script> -->
+		<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 		<script src="js/loginRegister.js"></script>
 </body>
 </html>

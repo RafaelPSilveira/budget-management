@@ -315,7 +315,7 @@ main section.middle .card .bottom .right {
     gap: 2rem;
 }
 
-.last-releases {
+.releases {
     padding: 0.5rem 1rem;
     margin-bottom: 0;
     background: var(--color-white) !important;

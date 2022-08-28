@@ -114,12 +114,64 @@
                     <!-- END OF CARD 3-->
             </div>
 
-            <div class="last-releases ">
+            <div class="releases ">
                     <div class=" newRelease d-flex d-inline justify-content-between align-items-center">
-                        <h4>Novo Lançamento</h4>
-                        <a href="../pages/releases.php" class="btn-several float-end">Lançar</a>
+                        <h4>Ultimos Lançamentos</h4>
+                        <button type="button" class="btn-several float-end" data-bs-toggle="modal" data-bs-target="#myModal">Lançar</button>
                     </div>
-                </div>
+
+                    <div class="modal fade" id="myModal">
+                        <div class="modal-dialog modal-dialog-centered">
+                            <div class="modal-content">
+        
+                                <div class="modal-header">
+                                    <h4 class="modal-title">Insira os dados</h4>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                                </div>
+
+                                <div class="modal-body">
+
+                                    <form method="POST" action="../model/releaseDB.php">
+                                        <div class="mb-3">
+                                            <label>Nome</label>
+                                            <input type="text" name="name" id="name" class="form-control" placeholder="Nome da Despesa">
+                                        </div>
+                                        <div class="mb-3">
+                                            <label for="type">Tipo de Lançamento:  </label>
+                                            <select id="balance" name="tipo">
+                                                <option value="receita">Receita</option>
+                                                <option value="despesa">Despesa</option>
+                                            </select> 
+                                        </div> 
+                                        <div class="mb-3">
+                                            <label for="category">Selecione a Categoria:</label>
+                                            <select id="category" name="category">
+                                                <option value="receita">Despesas Fixas</option>
+                                                <option value="despesa">Alimentação</option>
+                                                <option value="despesa">Saúde</option>
+                                                <option value="despesa">Lazer</option>
+                                                <option value="despesa">Outros</option>
+                                            </select> 
+                                        </div>
+                                        <div class="mb-3">
+                                            <label>Valor</label>
+                                            <input type="text" name="value" id="money" class="form-control" placeholder="R$ 0,00">
+                                        </div>
+                                        <div class="mb-3">
+                                            <label>Descrição</label>
+                                            <input type="text" name="obs" id="description" class="form-control" placeholder="Descrição detalhada (Opcional)">
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="submit" id="btn-modal" class="btn btn-success" data-bs-dismiss="modal">Salvar</button>
+                                        </div>
+                                    </form>
+
+                                </div>
+        
+                            </div>
+                        </div>
+                    </div>
+            </div>
                 <div class = recent-orders>
                     <table>
                         <thead>
@@ -145,6 +197,9 @@
     </main>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.8.0/chart.min.js" integrity="sha512-sW/w8s4RWTdFFSduOTGtk4isV1+190E/GghVffMA9XczdJ2MDzSzLEubKAs5h0wzgSJOQTRYyaz73L3d6RtJSg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
-    <script src="./main.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+
+    <!-- <script src="../js/main.js"></script> -->
 </body>
 </html>

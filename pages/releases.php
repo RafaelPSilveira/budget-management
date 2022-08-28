@@ -43,7 +43,7 @@
         <section  class="middle d-flex flex-column">
             
             <div class="header">
-                <h1>Visão Geral</h1>   
+                <h1>Lançamentos</h1>   
             </div>
 
             <div class="cards">
@@ -113,118 +113,99 @@
                 </div> 
                     <!-- END OF CARD 3-->
             </div>
+</br>
+</br>
+            <h2>Filtros</h2>
+</br>
+            <h3>Por Data</h3>
+            <h3>Por categoria</h3>
+            <h3>Por Tipo</h3>
+            <div class="releases">
 
-            <div class="last-releases ">
                 <div class=" newRelease d-flex d-inline justify-content-between align-items-center">
                     <h4>Lançamentos</h4>
                     <button type="button" class="btn-several float-end" data-bs-toggle="modal" data-bs-target="#myModal">Lançar</button>
                 </div>
-            </div>
 
-                <!-- The Modal -->
                 <div class="modal fade" id="myModal">
-                <div class="modal-dialog modal-dialog-centered">
-                    <div class="modal-content">
-
-                    <!-- Modal Header -->
-                    <div class="modal-header">
-                        <h4 class="modal-title">Insira os dados</h4>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
-                    </div>
-
-                    <!-- Modal body -->
-                    <div class="modal-body">
-                        <form action="new-inclusion.php" method="POST">
-                            <div class="mb-3">
-                                <label>Nome</label>
-                                <input type="text" name="name" class="form-control" placeholder="Nome da Despesa">
+                    <div class="modal-dialog modal-dialog-centered">
+                        <div class="modal-content">
+    
+                            <div class="modal-header">
+                                <h4 class="modal-title">Insira os dados</h4>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
                             </div>
 
-                            <div class="mb-3">
-                                <label for="type">Tipo de Lançamento:  </label>
-                                <select id="type" name="tipo">
-                                    <option value="receita">Receita</option>
-                                    <option value="despesa">Despesa</option>
-                                </select> 
-                            </div> 
+                            <div class="modal-body">
 
-                            <div class="mb-3">
-                                <label for="category">Selecione a Categoria:</label>
-                                <select id="category" name="category">
-                                    <option value="receita">Despesas Fixas</option>
-                                    <option value="despesa">Alimentação</option>
-                                    <option value="despesa">Saúde</option>
-                                    <option value="despesa">Lazer</option>
-                                    <option value="despesa">Outros</option>
-                                </select> 
+                                <form method="POST">
+                                    <div class="mb-3">
+                                        <label>Nome</label>
+                                        <input type="text" name="name" class="form-control" placeholder="Nome da Despesa">
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="type">Tipo de Lançamento:  </label>
+                                        <select id="type" name="tipo">
+                                            <option value="receita">Receita</option>
+                                            <option value="despesa">Despesa</option>
+                                        </select> 
+                                    </div> 
+                                    <div class="mb-3">
+                                        <label for="category">Selecione a Categoria:</label>
+                                        <select id="category" name="category">
+                                            <option value="receita">Despesas Fixas</option>
+                                            <option value="despesa">Alimentação</option>
+                                            <option value="despesa">Saúde</option>
+                                            <option value="despesa">Lazer</option>
+                                            <option value="despesa">Outros</option>
+                                        </select> 
+                                    </div>
+                                    <div class="mb-3">
+                                        <label>Valor</label>
+                                        <input type="text" name="value" class="form-control" placeholder="R$ 0,00">
+                                    </div>
+                                    <div class="mb-3">
+                                        <label>Descrição</label>
+                                        <input type="text" name="obs" class="form-control" placeholder="Descrição detalhada (Opcional)">
+                                    </div>
+                                </form>
+
                             </div>
-
-                            <div class="mb-3">
-                                <label>Valor</label>
-                                <input type="text" name="value" class="form-control" placeholder="R$ 0,00">
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-success" data-bs-dismiss="modal">Salvar</button>
                             </div>
-
-                            <div class="mb-3">
-                                <label>Descrição</label>
-                                <input type="text" name="obs" class="form-control" placeholder="Descrição detalhada (Opcional)">
-                            </div>
-                        </form>
-                    </div>
-
-                    <!-- Modal footer -->
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-success" data-bs-dismiss="modal">Salvar</button>
-                    </div>
-
+    
+                        </div>
                     </div>
                 </div>
-                </div>
-
-
-                <!-- <div class = recent-orders >
-                    <table id="releases" class="table table-bordered table-striped">
+            </div>
+            <div class = recent-orders>
+                    <table>
                         <thead>
                             <tr>
                                 <th>Nome</th>
                                 <th>Tipo</th>
                                 <th>Categoria</th>
                                 <th>Valor</th>
+                                <th>Data de Lançamento</th>
                                 <th>Observações</th>  
+                                <th>Ações</th> 
                             </tr>
                         </thead>
                         <tbody>
-                            <tr>
-                                <td><input type="text" id="nome_lancamento" placeholder="Nome da Despesa"></td>
-                                <td>
-                                    <select id="tipo">
-                                    <option value="">--Selecione--</option>   
-                                    <option value="receita">Receita</option>
-                                    <option value="despesa">Despesa</option>
-                                    </select>
-                                </td>
-                                <td>
-                                    <select id="categoria">
-                                        <option value="">--Selecione--</option>   
-                                        <option value="alimentacao">Alimentação</option>
-                                        <option value="transporte">Transporte</option>
-                                        <option value="educacao">Educação</option>
-                                        <option value="saude">Saúde</option>
-                                        <option value="diversao">Diversão</option>
-                                        <option value="outros">Outros</option>
-                                    </select> 
-                                </td>
-                                <td><input type="number" id="valor" placeholder="R$ 0,00"></td>
-                                <td><input type="text" id="obs" placeholder="Observação(Opcional)"></td>
-                                <td><button onclick="newRelease('releases')"><span class="material-icons-sharp">add</span></button></td>
-                                </tr>
+                            <?php
+                                // $getTransactions=  getTransactions ($connect);
+                            
+                            ?>
                         </tbody>
-                    </table> -->
-<!--                     
-                </div>  -->
+                    </table>                  
+                </div> 
+ 
         </section>
     </main>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.8.0/chart.min.js" integrity="sha512-sW/w8s4RWTdFFSduOTGtk4isV1+190E/GghVffMA9XczdJ2MDzSzLEubKAs5h0wzgSJOQTRYyaz73L3d6RtJSg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script src="../js/main.js"></script>
 </body>
 </html>
