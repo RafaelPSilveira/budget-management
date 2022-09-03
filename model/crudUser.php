@@ -1,5 +1,7 @@
 <?php
-    include('connectDB.php');    
+    include('connectDB.php');
+   
+      
     
     $success = [
         'success' => false,
@@ -17,10 +19,11 @@
     // $type         = $_POST['balance'];
     // $category     = $_POST['category'];
     // $value        = $_POST['value'];
-    $pdo = new PDO('mysql:host='.HOST.';dbname='.DATABASE, USER, PASSWORD);
+    $pdo = connectDB();
+    
     
     try{
-        if(empty($_POST)){
+        if(empty($_REQUEST)){
             $success['success'] = false;
             echo $success['msg'];
         }else{
@@ -29,19 +32,22 @@
             switch ($_REQUEST['type']){
                 
                 case 'create_user':
-                    $stmt = $pdo->prepare('INSERT INTO user(user,email,password) VALUES (:user,:email,:password)');
-                    $stmt->execute([
-                    'user'     => $user,
-                    'email'    => $email,
-                    'password' => $password,
+                    $getEmail = $pdo->prepare('SELECT email FROM user WHERE email=:email');
+                    $getEmail->execute([
+                        'email'=> $email
                     ]);
-                    ;
-                    $success['success'] = true;
-                    echo json_encode($success);
-                    // header('location: ../index.php'); 
-                    
-                    return;
-
+                    if($getEmail->fetch() >= 1){
+                        echo json_encode($success['msg'] = 'Email já cadastrado!');
+                    }else{
+                        $stmt = $pdo->prepare('INSERT INTO user(user,email,password) VALUES (:user,:email,:password)');
+                        $stmt->execute([
+                        'user'     => $user,
+                        'email'    => $email,
+                        'password' => $password,
+                        ]);
+                        $success['success'] = true;
+                        echo json_encode($success);                     
+                    }
                     break; 
                     
                 default:

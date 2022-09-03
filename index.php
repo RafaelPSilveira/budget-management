@@ -1,5 +1,6 @@
 <?php
-    // include('./functions/includes.php');
+    include('controler/includes.php');
+		
 ?>
 
 <!DOCTYPE html>
@@ -22,7 +23,8 @@
 						<button id="faz-login" class="btn-active" onclick="loginVisivel()">Faça seu Login</button>
 						<button id="faz-cadastro"class="btn-desative" onclick="cadastroVisivel()">Faça seu cadastro</button>
 					</div>					
-					<form class="" method="post" action="pages/dashboard.php">
+					<form class="" method="post" action="./controler/function.php">
+						<input type="hidden" name="login" value="true">
 											
 						<div class="form-group">
 							<label for="email">Email</label>

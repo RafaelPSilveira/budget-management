@@ -22,7 +22,7 @@
         <div class="dropdown">
             <button type="button" class="btn btn-primary dropdown-toggle" data-bs-toggle="dropdown">Rafael</button>
             <ul class="dropdown-menu">
-                <li><a class="dropdown-item" href="#">Sair</a></li>
+                <li><a class="dropdown-item" href="../controler/function.php?logout=true">Sair</a></li>
             </ul>
         </div>
         

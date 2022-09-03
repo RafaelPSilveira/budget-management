@@ -20,9 +20,8 @@ btnRegister.addEventListener("click", function(e) {
                         params, { params: { type: "create_user" } }, { headers: { "Content-type": "application/json" } }
                     )
                     .then((response) => {
-                        const { data } = response;
-                        console.log(data);
-                    });
+                        alert(response.data);
+                    }).then(window.location.href = "http://localhost/budget-management");
             }
         } catch (err) {
             console.log(err);

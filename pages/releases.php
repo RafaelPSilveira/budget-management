@@ -1,6 +1,5 @@
 <?php
-
-
+include("../controler/includes.php");
 ?>
 
 <!DOCTYPE html>
