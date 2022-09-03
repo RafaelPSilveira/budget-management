@@ -7,7 +7,7 @@
         logout();
         header('Location: ../index.php');
     }
-
+    
 
     function login($email,$password){
         

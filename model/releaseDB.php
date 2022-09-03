@@ -1,6 +1,7 @@
 <?php
 
     // include('connectDB.php');
+    
 
     $pdo = new PDO('mysql:host=localhost;dbname=budget-management;','root','');
 
