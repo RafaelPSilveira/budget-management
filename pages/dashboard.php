@@ -1,5 +1,7 @@
 <?php
 include("../controler/includes.php");
+// echo $_SESSION['cookie'];
+
 
 ?>
 

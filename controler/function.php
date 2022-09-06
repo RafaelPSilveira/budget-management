@@ -1,17 +1,22 @@
 <?php
-    if(!empty($_REQUEST['login'])&& !empty($_REQUEST['email']) && !empty($_REQUEST['password'])){
-        login($_REQUEST['email'], $_REQUEST['password']);
-        header('Location: ../pages/dashboard.php');
-    }
-    if(!empty($_REQUEST['logout'])){
-        logout();
-        header('Location: ../index.php');
-    }
-    
+
+if(!empty($_REQUEST['login']) && empty($_REQUEST['email']) && empty($_REQUEST['passwrod'])){
+     header('Location: ../index.php');
+}
+if(!empty($_REQUEST['login'])&& !empty($_REQUEST['email']) && !empty($_REQUEST['password'])){
+    login($_REQUEST['email'], $_REQUEST['password']);         
+}
+if(!empty($_REQUEST['login']) && !empty($_REQUEST['lembrar-me'])){
+    validateCookie($_COOKIE);    
+}
+if(!empty($_REQUEST['logout'])){
+    logout();
+    header('Location: ../index.php');
+}    
 
     function login($email,$password){
         
-       require('../model/connectDB.php');
+       include_once('../model/connectDB.php');
 
         $retorno = [
             'success' => false,
@@ -28,7 +33,8 @@
         ]);
 
         if($getLogin->fetch() < 1){
-            echo 'deu ruim';
+
+            header('Location: ../index.php');
             return $retorno;
         }else{
                        
@@ -37,20 +43,61 @@
                 'password' => $password
             ];
             
-            montaSessao($arrLogin);
+            montaSessao($arrLogin);                     
+            
+            if($_REQUEST['lembrar-me'] == 'on'){
+                
+                if(empty($_COOKIE['lembrar-me'])){
 
+                    $token = md5(time());
+                    $expire = time()+60*60*24*30;            
+                    montaCookie($token,$expire);
+
+                    $getToken = $pdo->prepare('UPDATE user SET token=:token WHERE email=:email AND password=:password');
+                    $getToken->execute([
+                        ':token'=>$token,
+                        ':email' => $email,
+                        ':password' => $password
+                    ]);         
+                                        
+                }              
+                     
+            }
+            
+            header('Location: ../pages/dashboard.php');
+            
+            
             return $retorno = [
                 'success' => true,
-                'msg'     => 'Login efetuado'
+                'msg'     => 'Login efetuado',                
             ];
         }
 
     }
 
     function logout(){
-        if(isset($_SESSION) <=0) return false;        
-        
+        setCookie('lembrar-me',null,1,);        
         session_destroy();
+    }
+
+    function validateCookie($getCookie){
+        if(!isset($getCookie['lembrar-me']) && empty($getCookie['lembrar-me'])) {return false;}
+        include_once('../model/connectDB.php');
+                
+        $pdo = connectDB();
+
+        $getLogin = $pdo->query("SELECT email,password FROM user WHERE token='".$getCookie['lembrar-me']."'")->fetch();
+        $getEmail = $getLogin['email'];
+        $getPassword = $getLogin['password'];       
+
+        // resolver problema de acesso no cookie, validar usuario com o token;
+               
+        if($getLogin < 1){
+            echo 'token invalido';            
+        }else{
+            login($getEmail,$getPassword);
+        }
+
     }
 
     function montaSessao($arrLogin){
@@ -61,6 +108,12 @@
         foreach($arrLogin as $key => $value){
             $_SESSION[$key] = $value;
         }
+    }
+
+    function montaCookie($token,$expire){
+        
+        setCookie('lembrar-me',$token,$expire);            
+                    
     }
    
    
