@@ -115,5 +115,7 @@ if(!empty($_REQUEST['logout'])){
         setCookie('lembrar-me',$token,$expire);            
                     
     }
+
+    
    
    

@@ -1,7 +1,5 @@
 <?php
 include("../controler/includes.php");
-// echo $_SESSION['cookie'];
-
 
 ?>
 
@@ -134,25 +132,26 @@ include("../controler/includes.php");
                                 <div class="modal-body">
 
                                     <form method="POST" action="../model/releaseDB.php">
+                                    <input type="hidden" id="hdnSession" value='<?php echo $_SESSION['email'] ?>'/>
                                         <div class="mb-3">
                                             <label>Nome</label>
                                             <input type="text" name="name" id="name" class="form-control" placeholder="Nome da Despesa">
                                         </div>
                                         <div class="mb-3">
-                                            <label for="type">Tipo de Lançamento:  </label>
+                                            <label for="type">Tipo de Lançamento: </label>
                                             <select id="balance" name="tipo">
-                                                <option value="receita">Receita</option>
-                                                <option value="despesa">Despesa</option>
+                                                <option value="Receita">Receita</option>
+                                                <option value="Despesa">Despesa</option>
                                             </select> 
                                         </div> 
                                         <div class="mb-3">
-                                            <label for="category">Selecione a Categoria:</label>
+                                            <label for="category">Selecione a Categoria: </label>
                                             <select id="category" name="category">
-                                                <option value="receita">Despesas Fixas</option>
-                                                <option value="despesa">Alimentação</option>
-                                                <option value="despesa">Saúde</option>
-                                                <option value="despesa">Lazer</option>
-                                                <option value="despesa">Outros</option>
+                                                <option value="Despesas Fixas">Despesas Fixas</option>
+                                                <option value="Alimentação">Alimentação</option>
+                                                <option value="Saúde">Saúde</option>
+                                                <option value="Lazer">Lazer</option>
+                                                <option value="Outros">Outros</option>
                                             </select> 
                                         </div>
                                         <div class="mb-3">
@@ -164,7 +163,7 @@ include("../controler/includes.php");
                                             <input type="text" name="obs" id="description" class="form-control" placeholder="Descrição detalhada (Opcional)">
                                         </div>
                                         <div class="modal-footer">
-                                            <button type="submit" id="btn-modal" class="btn btn-success" data-bs-dismiss="modal">Salvar</button>
+                                            <button type="submit" id="btn-releases" class="btn btn-success" data-bs-dismiss="modal">Salvar</button>
                                         </div>
                                     </form>
 
@@ -175,33 +174,29 @@ include("../controler/includes.php");
                     </div>
             </div>
                 <div class = recent-orders>
-                    <table>
+                    <table id="releases">
                         <thead>
                             <tr>
                                 <th>Nome</th>
                                 <th>Tipo</th>
                                 <th>Categoria</th>
                                 <th>Valor</th>
-                                <th>Data de Lançamento</th>
                                 <th>Observações</th>  
                             </tr>
                         </thead>
                         <tbody>
-                            <?php
-                                // $getTransactions=  getTransactions ($connect);
-                            
-                            ?>
+                          
                         </tbody>
                     </table>
                     <a href="../pages/releases.php" class="btn-several">Ver Todas</a>
                 </div> 
         </section>
     </main>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.8.0/chart.min.js" integrity="sha512-sW/w8s4RWTdFFSduOTGtk4isV1+190E/GghVffMA9XczdJ2MDzSzLEubKAs5h0wzgSJOQTRYyaz73L3d6RtJSg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.8.0/chart.min.js" integrity="sha512-sW/w8s4RWTdFFSduOTGtk4isV1+190E/GghVffMA9XczdJ2MDzSzLEubKAs5h0wzgSJOQTRYyaz73L3d6RtJSg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script> -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
     <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 	<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
-
-    <!-- <script src="../js/main.js"></script> -->
+    <script src="../js/crudReleases.js"></script>
+    
 </body>
 </html>

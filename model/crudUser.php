@@ -15,10 +15,7 @@
     $user         = $_POST['user'];
     $email        = $_POST['email'];
     $password     = $_POST['password'];
-    // $name_include = $_POST['name'];
-    // $type         = $_POST['balance'];
-    // $category     = $_POST['category'];
-    // $value        = $_POST['value'];
+
     $pdo = connectDB();
     
     
