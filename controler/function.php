@@ -6,9 +6,9 @@ if(!empty($_REQUEST['login']) && empty($_REQUEST['email']) && empty($_REQUEST['p
 if(!empty($_REQUEST['login'])&& !empty($_REQUEST['email']) && !empty($_REQUEST['password'])){
     login($_REQUEST['email'], $_REQUEST['password']);         
 }
-if(!empty($_REQUEST['login']) && !empty($_REQUEST['lembrar-me'])){
-    validateCookie($_COOKIE);    
-}
+// if(!empty($_REQUEST['login']) && !empty($_REQUEST['lembrar-me'])){
+//     validateCookie($_COOKIE);    
+// }
 if(!empty($_REQUEST['logout'])){
     logout();
     header('Location: ../index.php');
@@ -76,7 +76,7 @@ if(!empty($_REQUEST['logout'])){
     }
 
     function logout(){
-        setCookie('lembrar-me',null,1,);        
+        setCookie('lembrar-me',null,1,'/budget-management','localhost');        
         session_destroy();
     }
 
@@ -112,7 +112,7 @@ if(!empty($_REQUEST['logout'])){
 
     function montaCookie($token,$expire){
         
-        setCookie('lembrar-me',$token,$expire);            
+        setCookie('lembrar-me',$token,$expire,'/budget-management','localhost');            
                     
     }
 

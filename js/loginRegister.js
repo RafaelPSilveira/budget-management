@@ -9,6 +9,8 @@ btnRegister.addEventListener("click", function(e) {
             let password = document.getElementById("password").value;
             let confirmPass = document.getElementById("confirm").value;
 
+
+
             if (password != confirmPass) {
                 console.log("senhas diferentes!!");
             } else {

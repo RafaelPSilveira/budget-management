@@ -1,8 +1,6 @@
 <?php
-    include('connectDB.php');
-   
-    
-    
+    include('connectDB.php');  
+        
     $success = [
         'success' => false,
         'data'    => '',

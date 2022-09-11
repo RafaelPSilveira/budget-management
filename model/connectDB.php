@@ -6,7 +6,7 @@
 
     function connectDB(){
         
-        $success = [];
+        $success = []; 
         $success['success'] = false;
         $success['msg'] = 'Error';    
 

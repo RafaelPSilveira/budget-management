@@ -1,6 +1,6 @@
 <?php
 include("../controler/includes.php");
-
+print_r($_SESSION);
 ?>
 
 <!DOCTYPE html>
