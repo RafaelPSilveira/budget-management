@@ -1,4 +1,4 @@
-btnReleases = document.getElementById("btn-releases");
+btnReleases = document.getElementById("btn-NewReleases");
 btnReleases.addEventListener("click", function(e) {
     e.preventDefault();
 
@@ -45,19 +45,22 @@ const readRelease = async() => {
 
                             var numLines = table.rows.length;
                             var linha = table.insertRow(numLines);
-                            var nome = linha.insertCell(0);
-                            var tipo = linha.insertCell(1);
-                            var categoria = linha.insertCell(2);
-                            var valor = linha.insertCell(3);
-                            var OBS = linha.insertCell(4);
-                            var celula6 = linha.insertCell(5);
+                            var idRelease = linha.insertCell(0);
+                            var nome = linha.insertCell(1);
+                            var tipo = linha.insertCell(2);
+                            var categoria = linha.insertCell(3);
+                            var valor = linha.insertCell(4);
+                            var OBS = linha.insertCell(5);
+                            var opcoes = linha.insertCell(6);
+                            idRelease.innerHTML = releases[release].id;
                             nome.innerHTML = releases[release].name_include;
                             tipo.innerHTML = releases[release].type;
                             categoria.innerHTML = releases[release].category;
                             valor.innerHTML = releases[release].value;
                             OBS.innerHTML = releases[release].obs;
-                            celula6.innerHTML = "<div class='dropdown'><button type='button' class='btn btn-primary dropdown-toggle' data-bs-toggle='dropdown'><span class='material-icons-sharp'>add_circle</span></button><ul class='dropdown-menu'><li><a class='dropdown-item' href='#'>Editar</a></li><li><a class='dropdown-item' href='#'>Excluir</a></li></ul></div>";
+                            opcoes.innerHTML = "<div class='dropdown'><button type='button' class='btn btn-primary dropdown-toggle' data-bs-toggle='dropdown'><span class='material-icons-sharp'>add_circle</span></button><ul class='dropdown-menu'><li><a class='dropdown-item' href='#'>Editar</a></li><li><a class='dropdown-item' href='#'>Excluir</a></li></ul></div>";
                         }
+
                     }
                     if (window.location.href == "http://localhost/budget-management/pages/dashboard.php")
                         for (let release = 0; release < 5; release++) {
@@ -66,18 +69,20 @@ const readRelease = async() => {
 
                             var numLines = table.rows.length;
                             var linha = table.insertRow(numLines);
-                            var nome = linha.insertCell(0);
-                            var tipo = linha.insertCell(1);
-                            var categoria = linha.insertCell(2);
-                            var valor = linha.insertCell(3);
-                            var OBS = linha.insertCell(4);
-                            var celula6 = linha.insertCell(5);
+                            var idRelease = linha.insertCell(0);
+                            var nome = linha.insertCell(1);
+                            var tipo = linha.insertCell(2);
+                            var categoria = linha.insertCell(3);
+                            var valor = linha.insertCell(4);
+                            var OBS = linha.insertCell(5);
+                            var opcoes = linha.insertCell(6);
+                            idRelease.innerHTML = releases[release].id;
                             nome.innerHTML = releases[release].name_include;
                             tipo.innerHTML = releases[release].type;
                             categoria.innerHTML = releases[release].category;
                             valor.innerHTML = releases[release].value;
                             OBS.innerHTML = releases[release].obs;
-                            celula6.innerHTML = "<div class='dropdown'><button type='button' class='btn btn-primary dropdown-toggle' data-bs-toggle='dropdown'><span class='material-icons-sharp'>add_circle</span></button><ul class='dropdown-menu'><li><a class='dropdown-item' href='#'>Editar</a></li><li><a class='dropdown-item' href='#'>Excluir</a></li></ul></div>";
+                            opcoes.innerHTML = "<div class='dropdown'><button type='button' class='btn btn-primary dropdown-toggle' data-bs-toggle='dropdown'><span class='material-icons-sharp'>add_circle</span></button><ul class='dropdown-menu'><li><a class='dropdown-item' href='#'>Editar</a></li><li><a class='dropdown-item' href='#'>Excluir</a></li></ul></div>";
                         }
                 }
             })

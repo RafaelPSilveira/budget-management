@@ -1,6 +1,5 @@
 <?php
 include("../controler/includes.php");
-print_r($_SESSION);
 ?>
 
 <!DOCTYPE html>
@@ -163,7 +162,7 @@ print_r($_SESSION);
                                             <input type="text" name="obs" id="description" class="form-control" placeholder="Descrição detalhada (Opcional)">
                                         </div>
                                         <div class="modal-footer">
-                                            <button type="submit" id="btn-releases" class="btn btn-success" data-bs-dismiss="modal">Salvar</button>
+                                            <button type="submit" id="btn-NewReleases" class="btn btn-success" data-bs-dismiss="modal">Salvar</button>
                                         </div>
                                     </form>
 
@@ -173,15 +172,18 @@ print_r($_SESSION);
                         </div>
                     </div>
             </div>
+            <!--END OF MODAL RELEASE-->
                 <div class = recent-orders>
                     <table id="releases">
                         <thead>
-                            <tr>
+                            <tr>                              
+                                <th>ID</th> 
                                 <th>Nome</th>
                                 <th>Tipo</th>
                                 <th>Categoria</th>
                                 <th>Valor</th>
                                 <th>Observações</th>  
+                                <th>Opções</th> 
                             </tr>
                         </thead>
                         <tbody>
@@ -197,6 +199,7 @@ print_r($_SESSION);
     <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 	<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
     <script src="../js/crudReleases.js"></script>
+    <script src="../js/main.js"></script>
     
 </body>
 </html>

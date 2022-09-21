@@ -162,8 +162,12 @@ include("../controler/includes.php");
                                             <label>Descrição</label>
                                             <input type="text" name="obs" id="description" class="form-control" placeholder="Descrição detalhada (Opcional)">
                                         </div>
+                                        <div class="mb-3">
+                                            <label>Descrição</label>
+                                            <input type="text" name="obs" id="description" class="form-control" placeholder="Descrição detalhada (Opcional)">
+                                        </div>
                                         <div class="modal-footer">
-                                            <button type="submit" id="btn-releases" class="btn btn-success" data-bs-dismiss="modal">Salvar</button>
+                                            <button type="submit" id="btn-NewReleases" class="btn btn-success" data-bs-dismiss="modal">Salvar</button>
                                         </div>
                                     </form>
 
@@ -177,11 +181,12 @@ include("../controler/includes.php");
                     <table id="releasesAll">
                         <thead>
                             <tr>
+                            <th>ID</th> 
                                 <th>Nome</th>
                                 <th>Tipo</th>
                                 <th>Categoria</th>
                                 <th>Valor</th>
-                                <th>Observações</th> 
+                                <th>Observações</th>  
                                 <th>Opções</th> 
                             </tr>
                         </thead>

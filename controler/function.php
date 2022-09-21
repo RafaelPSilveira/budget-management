@@ -75,6 +75,23 @@ if(!empty($_REQUEST['logout'])){
 
     }
 
+    function existsCookies (){
+
+        $pdo = new PDO('mysql:host=localhost;dbname=budget-management', 'root', '');
+        $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+        $pdo->setAttribute(PDO::ATTR_EMULATE_PREPARES, false);
+
+        $getEmail = $pdo -> query("SELECT email FROM user WHERE token='".$_COOKIE['lembrar-me']."'")->fetch();
+
+        $arrLogin = [
+            'email' => $getEmail['email'] ,
+        ];
+
+        montaSessao($arrLogin);
+
+    }
+
+
     function logout(){
         setCookie('lembrar-me',null,1,'/budget-management','localhost');        
         session_destroy();
@@ -115,6 +132,8 @@ if(!empty($_REQUEST['logout'])){
         setCookie('lembrar-me',$token,$expire,'/budget-management','localhost');            
                     
     }
+
+
 
     
    
