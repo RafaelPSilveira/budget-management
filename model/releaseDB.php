@@ -15,6 +15,7 @@
 
         $_POST = json_decode(file_get_contents("php://input"),true);
     
+        $id           = $_POST ? $_POST['id'] : "";
         $name_include = $_POST ? $_POST['name'] : "";
         $type         = $_POST ? $_POST['balance'] : "";
         $category     = $_POST ? $_POST['category'] : "";
@@ -62,6 +63,14 @@
             case 'update_releases':
 
             case 'delete_releases':
+                $stmt = $pdo->prepare("DELETE FROM releases WHERE id=:id");
+                $stmt -> execute([
+                    "id"=>$id
+                ]);
+                $result['msg'] = "Excluido com sucesso";
+                $result['success'] = true;
+                echo json_encode($result);
+                break;
             }
             header("Content-Type: application/json;");
             echo json_encode($result);
