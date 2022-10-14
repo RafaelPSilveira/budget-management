@@ -83,9 +83,16 @@ function updateRelease(element) {
     var obsRelease = $(element).closest("tr").find("td:nth-child(6)").text();
 
     var campo = document.getElementById('name');
-    console.log(campo);
     campo.value = nomeRelease.toString();
-    console.log(campo);
+    var campo = document.getElementById('balance');
+    campo.value = tipoRelease.toString();
+    var campo = document.getElementById('category');
+    campo.value = categoriaRelease.toString();
+    var campo = document.getElementById('money');
+    campo.value = valorRelease.toString();
+    var campo = document.getElementById('description');
+    campo.value = obsRelease.toString();
+
 }
 
 function deleteRelease(element) {
