@@ -134,7 +134,7 @@ include("../controler/includes.php");
                                     <input type="hidden" id="hdnSession" value='<?php echo $_SESSION['email'] ?>'/>
                                         <div class="mb-3">
                                             <label>Nome</label>
-                                            <input type="text" name="name" id="name" class="form-control" value="terttetere" placeholder="Nome da Despesa">
+                                            <input type="text" name="name" id="name" class="form-control" value="dsada" placeholder="Nome da Despesa">
                                         </div>
                                         <div class="mb-3">
                                             <label for="type">Tipo de Lançamento: </label>

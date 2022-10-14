@@ -1,33 +1,33 @@
-btnRegister = document.getElementById('btn-modal');
-btnRegister.addEventListener('click', function() {
+// btnRegister = document.getElementById('btn-modal');
+// btnRegister.addEventListener('click', function() {
 
 
-    const createRelease = async() => {
+//     const createRelease = async() => {
 
-        try {
-            alert('aqui');
-            let name = document.getElementById('name').value;
-            let balance = document.getElementById('balance').value;
-            let category = document.getElementById('category').value;
-            let money = document.getElementById('money').value;
-            let description = document.getElementById('description').value;
-
-
-            var params = { 'name': name, 'balance': balance, 'category': category, 'money': money, 'description': description };
+//         try {
+//             alert('aqui');
+//             let name = document.getElementById('name').value;
+//             let balance = document.getElementById('balance').value;
+//             let category = document.getElementById('category').value;
+//             let money = document.getElementById('money').value;
+//             let description = document.getElementById('description').value;
 
 
-            await axios.post("model/crudUser.php", params, { params: { type: 'create_releases' } }, { headers: { 'Content-type': 'application/json' } }).then(() => {
+//             var params = { 'name': name, 'balance': balance, 'category': category, 'money': money, 'description': description };
 
-            });
 
-        } catch (err) {
-            console.log(err);
-        }
-    }
+//             await axios.post("model/crudUser.php", params, { params: { type: 'create_releases' } }, { headers: { 'Content-type': 'application/json' } }).then(() => {
 
-    createRelease();
+//             });
 
-})
+//         } catch (err) {
+//             console.log(err);
+//         }
+//     }
+
+//     createRelease();
+
+// })
 
 // function newRelease(idTable) {
 //     var table = document.getElementById(idTable);

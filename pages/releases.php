@@ -178,7 +178,7 @@ include("../controler/includes.php");
                     </div>
             </div>
                 <div class = recent-orders>
-                    <table id="releasesAll">
+                    <table id="releases">
                         <thead>
                             <tr>
                             <th>ID</th> 

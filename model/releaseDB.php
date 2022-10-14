@@ -15,7 +15,7 @@
 
         $_POST = json_decode(file_get_contents("php://input"),true);
     
-        $id           = $_POST ? $_POST['id'] : "";
+        
         $name_include = $_POST ? $_POST['name'] : "";
         $type         = $_POST ? $_POST['balance'] : "";
         $category     = $_POST ? $_POST['category'] : "";
@@ -49,8 +49,12 @@
                 break;
     
             case 'read_releases':
-    
-                $getReleases = $pdo->query("SELECT id, name_include, type, category, value, obs FROM `releases` WHERE user_id='$getID' ORDER BY date_release DESC");
+                $limite="";
+                if(!empty($_REQUEST['limite'])){
+                    $limite = $_REQUEST['limite'];
+                    $limite = $limite !=0 ? "LIMIT $limite" : "";
+                }
+                $getReleases = $pdo->query("SELECT id, name_include, type, category, value, obs FROM `releases` WHERE user_id='$getID' ORDER BY date_release DESC $limite");
                 $releases = array();
     
                 while ($row = $getReleases->fetch(PDO::FETCH_ASSOC)) {
@@ -61,7 +65,8 @@
                 break;
 
             case 'update_releases':
-
+                $id = $_POST ? $_POST['id'] : "";
+                break;
             case 'delete_releases':
                 $stmt = $pdo->prepare("DELETE FROM releases WHERE id=:id");
                 $stmt -> execute([
