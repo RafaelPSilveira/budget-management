@@ -1,38 +1,53 @@
-btnReleases = document.getElementById("btn-NewReleases");
-btnReleases.addEventListener("click", function(e) {
+btnLancar = document.getElementById('lancar');
+btnLancar.addEventListener("click", function(e) {
     e.preventDefault();
+    if (document.getElementsByClassName('update')) {
+        btnSalvar = document.getElementById('btn-NewReleases');
+        btnSalvar.classList.add('btn-NewReleases');
+        btnSalvar.classList.remove('update');
+    }
+    // if (document.getElementById('update')) {
+    // btnSalvar = document.getElementById('btn-NewReleases');
+    // btnSalvar.id = 'btn-NewReleases';
+    // }
+})
+if (document.getElementsByClassName("btn-NewReleases")) {
+    btnReleases = document.getElementsByClassName("btn-NewReleases");
+    btnReleases[0].addEventListener("click", function(e) {
+        e.preventDefault();
 
 
-    const newRelease = async() => {
-        try {
-            let name = document.getElementById("name").value;
-            let balance = document.getElementById("balance").value;
-            let category = document.getElementById("category").value;
-            let value = document.getElementById("money").value;
-            let description = document.getElementById("description").value;
-            let sessionEmail = document.getElementById("hdnSession").value;
+        const newRelease = async() => {
+            try {
+                let name = document.getElementById("name").value;
+                let balance = document.getElementById("balance").value;
+                let category = document.getElementById("category").value;
+                let value = document.getElementById("money").value;
+                let description = document.getElementById("description").value;
+                let sessionEmail = document.getElementById("hdnSession").value;
 
-            var params = { name: name, balance: balance, category: category, value: value, description: description, sessionEmail: sessionEmail };
+                var params = { name: name, balance: balance, category: category, value: value, description: description, sessionEmail: sessionEmail };
 
-            await axios
-                .post(
-                    "../model/releaseDB.php",
-                    params, { params: { type: "create_release" } }, { headers: { "Content-type": "application/json" } }
-                )
-                .then((response) => {
-                    // alert(response.data);
-                    document.location.reload(true);
-                }).catch(e => {
-                    console.log(e);
-                })
+                await axios
+                    .post(
+                        "../model/releaseDB.php",
+                        params, { params: { type: "create_release" } }, { headers: { "Content-type": "application/json" } }
+                    )
+                    .then((response) => {
+                        // alert(response.data);
+                        document.location.reload(true);
+                    }).catch(e => {
+                        console.log(e);
+                    })
 
-        } catch (err) {
-            console.log(err);
-        }
-    };
-    newRelease();
+            } catch (err) {
+                console.log(err);
+            }
+        };
+        newRelease();
 
-});
+    }, false);
+}
 
 const readRelease = async() => {
     try {
@@ -61,7 +76,7 @@ const readRelease = async() => {
                         categoria.innerHTML = releases[release].category;
                         valor.innerHTML = releases[release].value;
                         OBS.innerHTML = releases[release].obs;
-                        opcoes.innerHTML = "<div class='dropdown'><button type='button' class='btn btn-primary dropdown-toggle' data-bs-toggle='dropdown'><span class='material-icons-sharp'>add_circle</span></button><ul class='dropdown-menu'><li><button type='button' class='btn-primary' data-bs-toggle='modal' data-bs-target='#myModal' onclick='updateRelease(this)'>Editar</button>'</li><button type='button' class='btn-danger' data-bs-toggle='modal' data-bs-target='#myModal' onclick='updateRelease(this)'>Excluir</button></ul></div>";
+                        opcoes.innerHTML = "<div class='dropdown'><button type='button' id='chose' class='btn btn-primary dropdown-toggle' data-bs-toggle='dropdown'><span class='material-icons-sharp'>add_circle</span></button><ul class='dropdown-menu'><li><button type='button' id='editar' class='btn-primary' data-bs-toggle='modal' data-bs-target='#myModal' onclick='update(this)'>Editar</button>'</li><button type='button' class='btn-danger' data-bs-toggle='modal' data-bs-target='#myModal' onclick='updateRelease(this)'>Excluir</button></ul></div>";
                     }
                 }
 
@@ -69,6 +84,24 @@ const readRelease = async() => {
     } catch (err) {
         console.error(err)
     }
+
+    if (document.getElementById('editar')) {
+        btnEditar = document.getElementById('editar');
+        btnEditar.addEventListener("click", function(e) {
+            e.preventDefault();
+
+            if (document.getElementsByClassName('btn-NewReleases')) {
+                btnSalvar = document.getElementById('btn-NewReleases');
+                btnSalvar.classList.remove('btn-NewReleases');
+                btnSalvar.classList.add('update');
+            }
+            // if (document.getElementById('btn-NewReleases')) {
+            //     btnSalvar = document.getElementById('btn-NewReleases');
+            //     btnSalvar.id = 'update';
+            // }
+        })
+    }
+
 }
 
 readRelease();
@@ -92,6 +125,13 @@ function updateRelease(element) {
     campo.value = valorRelease.toString();
     var campo = document.getElementById('description');
     campo.value = obsRelease.toString();
+
+    return idRelease;
+
+}
+
+function update(element) {
+    let idRelease = updateRelease(element);
 
 }
 
