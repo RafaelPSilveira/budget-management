@@ -13,9 +13,8 @@
         
     } else{
 
-        $_POST = json_decode(file_get_contents("php://input"),true);
-    
-        
+        $_POST = json_decode(file_get_contents("php://input"),true);    
+       
         $name_include = $_POST ? $_POST['name'] : "";
         $type         = $_POST ? $_POST['balance'] : "";
         $category     = $_POST ? $_POST['category'] : "";
@@ -65,8 +64,21 @@
                 break;
 
             case 'update_releases':
-                $id = $_POST ? $_POST['id'] : "";
+                $id = $_POST ? $_POST['idRelease'] : "";
+                $stmt = $pdo->prepare("UPDATE releases SET name_include=:name_include, type=:type, category=:category, value=:value, obs=:obs WHERE id='$id'");
+                $stmt->execute([
+                'name_include' => $name_include,
+                'type' => $type,
+                'category' => $category,
+                'value' => $value,
+                'obs' => $description,
+                ]);
+                
+                $result['msg'] = "Feito com sucesso";
+                $result['success'] = true;
+                echo json_encode($result);
                 break;
+
             case 'delete_releases':
                 $stmt = $pdo->prepare("DELETE FROM releases WHERE id=:id");
                 $stmt -> execute([

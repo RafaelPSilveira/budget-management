@@ -114,10 +114,10 @@ include("../controler/includes.php");
                     <!-- END OF CARD 3-->
             </div>
 
-            <div class="releases ">
+            <div class="releases">
                     <div class=" newRelease d-flex d-inline justify-content-between align-items-center">
                         <h4>Ultimos Lançamentos</h4>
-                        <button type="button" class="btn-several float-end" data-bs-toggle="modal" data-bs-target="#myModal">Lançar</button>
+                        <button type="button" id="lancar" class="btn-several float-end" data-bs-toggle="modal" data-bs-target="#myModal">Lançar</button>
                     </div>
 
                     <div class="modal fade" id="myModal">
@@ -167,7 +167,7 @@ include("../controler/includes.php");
                                             <input type="text" name="obs" id="description" class="form-control" placeholder="Descrição detalhada (Opcional)">
                                         </div>
                                         <div class="modal-footer">
-                                            <button type="submit" id="btn-NewReleases" class="btn btn-success" data-bs-dismiss="modal">Salvar</button>
+                                            <button type="submit" id="btn-NewReleases" class="btn btn-success btn-NewReleases" data-bs-dismiss="modal">Salvar</button>
                                         </div>
                                     </form>
 

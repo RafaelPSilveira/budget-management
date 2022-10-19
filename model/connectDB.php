@@ -2,7 +2,7 @@
     define('HOST', 'localhost');
     define('DATABASE','budget-management');
     define('USER', 'root');
-    define('PASSWORD', '');
+    define('PASSWORD', 'root');
 
     function connectDB(){
         
