@@ -72,7 +72,7 @@ const readRelease = async() => {
                         categoria.innerHTML = releases[release].category;
                         valor.innerHTML = releases[release].value;
                         OBS.innerHTML = releases[release].obs;
-                        opcoes.innerHTML = "<div class='dropdown'><button type='button' id='chose' class='btn btn-primary dropdown-toggle' data-bs-toggle='dropdown'><span class='material-icons-sharp'>add_circle</span></button><ul class='dropdown-menu'><li><button type='button' id='editar' class='btn-primary' data-bs-toggle='modal' data-bs-target='#myModal' onclick='updateRelease(this)'>Editar</button>'</li><button type='button' class='btn-danger' data-bs-toggle='modal' data-bs-target='#myModal' onclick='updateRelease(this)'>Excluir</button></ul></div>";
+                        opcoes.innerHTML = "<div class='dropdown'><button type='button' id='chose' class='btn btn-primary dropdown-toggle' data-bs-toggle='dropdown'><span class='material-icons-sharp'>add_circle</span></button><ul class='dropdown-menu'><li><button type='button' id='editar' class='btn-primary' data-bs-toggle='modal' data-bs-target='#myModal' onclick='btnUpdate(this)'>Editar</button>'</li><button type='button' class='btn-danger' data-bs-toggle='modal' data-bs-target='#myModal' onclick='deleteRelease(this)'>Excluir</button></ul></div>";
                     }
                 }
 
@@ -85,7 +85,7 @@ const readRelease = async() => {
 
 readRelease();
 
-function updateRelease(element) {
+function btnUpdate(element) {
 
     var idRelease = $(element).closest("tr").find("td:first").text();
     var nomeRelease = $(element).closest("tr").find("td:nth-child(2)").text();
@@ -114,12 +114,12 @@ function updateRelease(element) {
         btnReleases[0].addEventListener("click", function(e) {
             e.preventDefault();
             console.log('chguei aqui')
-            update(idRelease);
+            updateRelease(idRelease);
         })
     }
 }
 
-async function update(element) {
+async function updateRelease(element) {
     try {
         let idRelease = element;
         let name = document.getElementById("name").value;
@@ -127,19 +127,16 @@ async function update(element) {
         let category = document.getElementById("category").value;
         let value = document.getElementById("money").value;
         let description = document.getElementById("description").value;
-        // let sessionEmail = document.getElementById("hdnSession").value;
-        console.log(idRelease);
-
 
         var params = { idRelease: idRelease, name: name, balance: balance, category: category, value: value, description: description };
-        console.log(params);
+
         await axios
             .post(
                 "../model/releaseDB.php",
                 params, { params: { type: "update_releases" } }, { headers: { "Content-type": "application/json" } }
             )
             .then((response) => {
-                // alert(response.data);
+                alert(response.data);
                 document.location.reload(true);
             }).catch(e => {
                 console.log(e);
@@ -151,6 +148,26 @@ async function update(element) {
 
 }
 
-function deleteRelease(element) {
-    var idRelease = $(element).closest("tr").find("td:first").text();
+async function deleteRelease(element) {
+    try {
+
+        var idRelease = $(element).closest("tr").find("td:first").text();
+
+        var params = { idRelease: idRelease }
+
+        await axios
+            .post(
+                "../model/releaseDB.php",
+                params, { params: { type: "delete_releases" } }, { headers: { "Content-type": "application/json" } }
+            )
+            .then((response) => {
+                // alert(response.data);
+                document.location.reload(true);
+            }).catch(e => {
+                console.log(e);
+            })
+
+    } catch (err) {
+        console.log(err);
+    }
 }

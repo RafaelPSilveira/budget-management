@@ -65,13 +65,14 @@
 
             case 'update_releases':
                 $id = $_POST ? $_POST['idRelease'] : "";
-                $stmt = $pdo->prepare("UPDATE releases SET name_include=:name_include, type=:type, category=:category, value=:value, obs=:obs WHERE id='$id'");
+                $stmt = $pdo->prepare("UPDATE releases SET name_include=:name_include, type=:type, category=:category, value=:value, obs=:obs WHERE id=:id");
                 $stmt->execute([
                 'name_include' => $name_include,
                 'type' => $type,
                 'category' => $category,
                 'value' => $value,
                 'obs' => $description,
+                'id' => $id
                 ]);
                 
                 $result['msg'] = "Feito com sucesso";
@@ -80,6 +81,7 @@
                 break;
 
             case 'delete_releases':
+                $id = $_POST ? $_POST['idRelease'] : "";
                 $stmt = $pdo->prepare("DELETE FROM releases WHERE id=:id");
                 $stmt -> execute([
                     "id"=>$id
