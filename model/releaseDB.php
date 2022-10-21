@@ -42,9 +42,8 @@
                 'user_id' => $getID,
                 
                 ]);
-                $result['msg'] = "Feito com sucesso";
+                $result['msg'] = "Lançado com sucesso";
                 $result['success'] = true;
-                echo json_encode($result);
                 break;
     
             case 'read_releases':
@@ -75,9 +74,8 @@
                 'id' => $id
                 ]);
                 
-                $result['msg'] = "Feito com sucesso";
+                $result['msg'] = "Atualizado com sucesso";
                 $result['success'] = true;
-                echo json_encode($result);
                 break;
 
             case 'delete_releases':
@@ -88,7 +86,6 @@
                 ]);
                 $result['msg'] = "Excluido com sucesso";
                 $result['success'] = true;
-                echo json_encode($result);
                 break;
             }
             header("Content-Type: application/json;");

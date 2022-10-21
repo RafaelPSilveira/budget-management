@@ -28,7 +28,7 @@ btnLancar.addEventListener("click", function(e) {
                             params, { params: { type: "create_release" } }, { headers: { "Content-type": "application/json" } }
                         )
                         .then((response) => {
-                            // alert(response.data);
+                            // alert(response.data.msg);
                             document.location.reload(true);
                         }).catch(e => {
                             console.log(e);
@@ -72,7 +72,7 @@ const readRelease = async() => {
                         categoria.innerHTML = releases[release].category;
                         valor.innerHTML = releases[release].value;
                         OBS.innerHTML = releases[release].obs;
-                        opcoes.innerHTML = "<div class='dropdown'><button type='button' id='chose' class='btn btn-primary dropdown-toggle' data-bs-toggle='dropdown'><span class='material-icons-sharp'>add_circle</span></button><ul class='dropdown-menu'><li><button type='button' id='editar' class='btn-primary' data-bs-toggle='modal' data-bs-target='#myModal' onclick='btnUpdate(this)'>Editar</button>'</li><button type='button' class='btn-danger' data-bs-toggle='modal' data-bs-target='#myModal' onclick='deleteRelease(this)'>Excluir</button></ul></div>";
+                        opcoes.innerHTML = "<div class='dropdown'><button type='button' id='chose' class='btn btn-primary dropdown-toggle' data-bs-toggle='dropdown'><span class='material-icons-sharp'>add_circle</span></button><ul class='dropdown-menu'><li><button type='button' id='editar' class='btn-primary' data-bs-toggle='modal' data-bs-target='#myModal' onclick='btnUpdate(this)'>Editar</button>'</li><li><button type='button' class='btn-danger' data-bs-toggle='modal' data-bs-target='#dialog' onclick='deleteRelease(this)'>Excluir</button></li></ul></div>";
                     }
                 }
 
@@ -93,7 +93,7 @@ function btnUpdate(element) {
     var categoriaRelease = $(element).closest("tr").find("td:nth-child(4)").text();
     var valorRelease = $(element).closest("tr").find("td:nth-child(5)").text();
     var obsRelease = $(element).closest("tr").find("td:nth-child(6)").text();
-
+    console.log(idRelease);
     var campo = document.getElementById('name');
     campo.value = nomeRelease.toString();
     var campo = document.getElementById('balance');
@@ -136,7 +136,7 @@ async function updateRelease(element) {
                 params, { params: { type: "update_releases" } }, { headers: { "Content-type": "application/json" } }
             )
             .then((response) => {
-                alert(response.data);
+                // alert(response.data.msg);
                 document.location.reload(true);
             }).catch(e => {
                 console.log(e);
@@ -148,26 +148,101 @@ async function updateRelease(element) {
 
 }
 
-async function deleteRelease(element) {
-    try {
 
-        var idRelease = $(element).closest("tr").find("td:first").text();
+function deleteRelease(element) {
 
-        var params = { idRelease: idRelease }
+    var idRelease = $(element).closest("tr").find("td:first").text();
 
-        await axios
-            .post(
-                "../model/releaseDB.php",
-                params, { params: { type: "delete_releases" } }, { headers: { "Content-type": "application/json" } }
-            )
-            .then((response) => {
-                // alert(response.data);
-                document.location.reload(true);
-            }).catch(e => {
-                console.log(e);
-            })
+    btnDelete = document.getElementById('delete');
+    btnDelete.addEventListener('click', async() => {
 
-    } catch (err) {
-        console.log(err);
-    }
+        try {
+            var params = { idRelease: idRelease }
+
+            await axios
+                .post(
+                    "../model/releaseDB.php",
+                    params, { params: { type: "delete_releases" } }, { headers: { "Content-type": "application/json" } }
+                )
+                .then((response) => {
+                    // alert(response.data.msg);
+                    document.location.reload(true);
+                }).catch(e => {
+                    console.log(e);
+                })
+
+        } catch (err) {
+            console.log(err);
+        }
+    })
 }
+
+listenCategory = document.getElementById('balance')
+listenCategory.addEventListener('click', async() => {
+    var receita = [];
+    receita[0] = 'salario';
+    receita[1] = 'Renda extra';
+    receita[2] = 'Rendimento';
+    receita[3] = 'Outros';
+
+    var despesas = [];
+    despesas[0] = 'Despesas Fixas';
+    despesas[1] = 'Alimentação';
+    despesas[2] = 'Saúde';
+    despesas[3] = 'Lazer';
+    despesas[4] = 'Outros';
+
+
+    let btnBalance = document.getElementById('balance').value
+    console.log(btnBalance);
+    let campCategory = document.getElementById('category')
+
+
+
+    if (document.getElementById('balance').value == 'Receita') {
+
+        if (campCategory.childElementCount < 4)
+            for (let i = 0; i < receita.length; i++) {
+                opt = document.createElement('option');
+                opt.value = receita[i];
+                opt.innerHTML = receita[i];
+                campCategory.appendChild(opt);
+            } else {
+
+                $("#category option").each(function() {
+                    $(this).remove();
+                });
+
+                for (let i = 0; i < receita.length; i++) {
+                    opt = document.createElement('option');
+                    opt.value = receita[i];
+                    opt.innerHTML = receita[i];
+                    campCategory.appendChild(opt);
+                }
+
+            }
+
+    } else {
+
+        if (campCategory.childElementCount < 4)
+            for (let i = 0; i < despesas.length; i++) {
+                opt = document.createElement('option');
+                opt.value = despesas[i];
+                opt.innerHTML = despesas[i];
+                campCategory.appendChild(opt);
+            } else {
+
+                $("#category option").each(function() {
+                    $(this).remove();
+                });
+
+                for (let i = 0; i < despesas.length; i++) {
+                    opt = document.createElement('option');
+                    opt.value = despesas[i];
+                    opt.innerHTML = despesas[i];
+                    campCategory.appendChild(opt);
+                }
+
+            }
+    }
+})
