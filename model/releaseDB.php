@@ -62,6 +62,22 @@
                 $result = $releases;
                 break;
 
+            case 'read_receitas':
+                $receitas = $pdo->prepare("SELECT SUM(value) AS value_receitas FROM `releases` WHERE user_id='$getID' AND type='Receita'");
+                $receitas->execute();
+
+                $despesas = $pdo->prepare("SELECT SUM(value) AS value_despesas FROM `releases` WHERE user_id='$getID' AND type='Despesa'");
+                $despesas->execute();
+
+                $row = [$receitas->fetch(PDO::FETCH_ASSOC),
+                        $despesas->fetch(PDO::FETCH_ASSOC)];
+                
+                // $sum = $row['value_receitas'];
+                $result= $row;
+
+               break;
+    
+
             case 'update_releases':
                 $id = $_POST ? $_POST['idRelease'] : "";
                 $stmt = $pdo->prepare("UPDATE releases SET name_include=:name_include, type=:type, category=:category, value=:value, obs=:obs WHERE id=:id");
@@ -87,10 +103,16 @@
                 $result['msg'] = "Excluido com sucesso";
                 $result['success'] = true;
                 break;
-            }
+        }
+
+
             header("Content-Type: application/json;");
             echo json_encode($result);
+
+
     }
+
+
     
 
 

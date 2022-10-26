@@ -57,9 +57,7 @@ include("../controler/includes.php");
                         </div>
                     </div>
 
-                    <div class="middle">
-                        <h1>R$ 3.000,00</h1>
-                    </div>
+                    <div class="middle" id="receitas"></div>
 
                     <div class="bottom">
                         <div class="left">
@@ -79,9 +77,7 @@ include("../controler/includes.php");
                         </div>
                     </div>
 
-                    <div class="middle">
-                        <h1>R$ 1.800,00</h1>
-                    </div>
+                    <div class="middle" id="despesas"></div>
 
                     <div class="bottom">
                         <div class="left">
@@ -101,9 +97,7 @@ include("../controler/includes.php");
                         </div>
                     </div>
 
-                    <div class="middle">
-                        <h1>R$ 1.200,00</h1>
-                    </div>
+                    <div class="middle" id="saldo"></div>
 
                     <div class="bottom">
                         <div class="left">
@@ -159,8 +153,7 @@ include("../controler/includes.php");
                                     </div>
                                     <div class="mb-3">
                                         <label>Valor</label>
-                                        <input type="text" name="value" id="money" class="form-control"
-                                            placeholder="R$ 0,00">
+                                        <input type="text" name="value" id="money" class="form-control" placeholder="R$ 0,00">
                                     </div>
                                     <div class="mb-3">
                                         <label>Descrição</label>

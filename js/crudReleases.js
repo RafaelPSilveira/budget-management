@@ -70,7 +70,7 @@ const readRelease = async() => {
                         nome.innerHTML = releases[release].name_include;
                         tipo.innerHTML = releases[release].type;
                         categoria.innerHTML = releases[release].category;
-                        valor.innerHTML = releases[release].value;
+                        valor.innerHTML = parseFloat(releases[release].value).toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' });
                         OBS.innerHTML = releases[release].obs;
                         opcoes.innerHTML = "<div class='dropdown'><button type='button' id='chose' class='btn btn-primary dropdown-toggle' data-bs-toggle='dropdown'><span class='material-icons-sharp'>add_circle</span></button><ul class='dropdown-menu'><li><button type='button' id='editar' class='btn-primary' data-bs-toggle='modal' data-bs-target='#myModal' onclick='btnUpdate(this)'>Editar</button>'</li><li><button type='button' class='btn-danger' data-bs-toggle='modal' data-bs-target='#dialog' onclick='deleteRelease(this)'>Excluir</button></li></ul></div>";
                     }
@@ -246,3 +246,43 @@ listenCategory.addEventListener('click', async() => {
             }
     }
 })
+
+const cardReceitas = async() => {
+    try {
+
+        await axios.get('../model/releaseDB.php', { params: { type: "read_receitas" }, }, { headers: { 'Content-Type': 'application/json' } })
+            .then((response) => {
+
+                var valorReceitas = response.data[0].value_receitas
+                var valorDespesas = response.data[1].value_despesas
+
+
+                var receitas = document.getElementById('receitas')
+                var receitasH1 = document.createElement('h1')
+                receitasH1.innerHTML = parseFloat(valorReceitas).toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' });
+                receitas.appendChild(receitasH1)
+
+                var despesas = document.getElementById('despesas')
+                var despesasH1 = document.createElement('h1')
+                despesasH1.innerHTML = parseFloat(valorDespesas).toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' });
+                despesas.appendChild(despesasH1)
+
+                var saldo = document.getElementById('saldo')
+                var saldoH1 = document.createElement('h1')
+                saldoH1.innerHTML = parseFloat(valorReceitas - valorDespesas).toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' });
+                saldo.appendChild(saldoH1)
+
+
+            })
+
+    } catch (err) {
+        console.log(err);
+    }
+}
+
+cardReceitas();
+
+// async function converter(valor) {
+//     var numero = valor;
+//     document.getElementById('money').value = parseFloat(numero).toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' });
+// }
