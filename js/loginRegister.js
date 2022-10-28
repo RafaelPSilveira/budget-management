@@ -23,7 +23,7 @@ btnRegister.addEventListener("click", function(e) {
                     )
                     .then((response) => {
                         alert(response.data);
-                    }).then(window.location.href = "http://localhost/budget-management");
+                    }).then(window.location.href = "http://localhost/index.php");
             }
         } catch (err) {
             console.log(err);

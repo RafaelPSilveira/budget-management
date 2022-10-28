@@ -45,24 +45,28 @@
                 $result['msg'] = "Lançado com sucesso";
                 $result['success'] = true;
                 break;
-    
-            case 'read_releases':
-                $limite="";
-                if(!empty($_REQUEST['limite'])){
-                    $limite = $_REQUEST['limite'];
-                    $limite = $limite !=0 ? "LIMIT $limite" : "";
-                }
-                $getReleases = $pdo->query("SELECT id, name_include, type, category, value, obs FROM `releases` WHERE user_id='$getID' ORDER BY date_release DESC $limite");
-                $releases = array();
-    
-                while ($row = $getReleases->fetch(PDO::FETCH_ASSOC)) {
-                    array_push($releases, $row);
-                }
-
-                $result = $releases;
-                break;
-
-            case 'read_receitas':
+                case 'read_releases':
+                    $limite="";
+                    if(!empty($_REQUEST['limite'])){
+                        $limite = $_REQUEST['limite'];
+                        $limite = $limite !=0 ? "LIMIT $limite" : "";
+                    }
+                    $getReleases = $pdo->query("SELECT id, name_include, type, category, value, obs FROM `releases` WHERE user_id='$getID' ORDER BY date_release DESC $limite");
+                    $releases = array();
+                    
+                    while ($row = $getReleases->fetch(PDO::FETCH_ASSOC)) {
+                        array_push($releases, $row);
+                    }
+                    
+                    $result = $releases;
+                    break;
+                    
+                    // SELECT * FROM releases WHERE date_release >= '2022-10-01 00:00:00' and date_release <= '2022-10-31 23:59:59' and user_id=1;
+            case 'read_cards':
+                // $year = $_POST ? $_POST['year'] : "";
+                // $month = $_POST ? $_POST['month'] : "";
+                // $fullDate = $_POST ? $_POST['fullDate'] : "";
+                
                 $receitas = $pdo->prepare("SELECT SUM(value) AS value_receitas FROM `releases` WHERE user_id='$getID' AND type='Receita'");
                 $receitas->execute();
 
@@ -70,7 +74,9 @@
                 $despesas->execute();
 
                 $row = [$receitas->fetch(PDO::FETCH_ASSOC),
-                        $despesas->fetch(PDO::FETCH_ASSOC)];
+                        $despesas->fetch(PDO::FETCH_ASSOC),
+    
+                ];
                 
                 // $sum = $row['value_receitas'];
                 $result= $row;

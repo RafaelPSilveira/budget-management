@@ -17,6 +17,8 @@ btnLancar.addEventListener("click", function(e) {
                     let balance = document.getElementById("balance").value;
                     let category = document.getElementById("category").value;
                     let value = document.getElementById("money").value;
+                    value = converter(value);
+                    console.log(value);
                     let description = document.getElementById("description").value;
                     let sessionEmail = document.getElementById("hdnSession").value;
 
@@ -47,7 +49,7 @@ btnLancar.addEventListener("click", function(e) {
 
 const readRelease = async() => {
     try {
-        let limite = window.location.href == "http://localhost/budget-management/pages/dashboard.php" ? 5 : 0
+        let limite = window.location.href == "http://localhost:8000/pages/dashboard.php" ? 5 : 0
         await axios.get('../model/releaseDB.php?limite=' + limite, { params: { type: "read_releases" }, }, { headers: { 'Content-Type': 'application/json' } })
             .then(function(response) {
                 releases = response.data;
@@ -250,7 +252,7 @@ listenCategory.addEventListener('click', async() => {
 const cardReceitas = async() => {
     try {
 
-        await axios.get('../model/releaseDB.php', { params: { type: "read_receitas" }, }, { headers: { 'Content-Type': 'application/json' } })
+        await axios.get('../model/releaseDB.php', { params: { type: "read_cards" }, }, { headers: { 'Content-Type': 'application/json' } })
             .then((response) => {
 
                 var valorReceitas = response.data[0].value_receitas
@@ -261,6 +263,13 @@ const cardReceitas = async() => {
                 var receitasH1 = document.createElement('h1')
                 receitasH1.innerHTML = parseFloat(valorReceitas).toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' });
                 receitas.appendChild(receitasH1)
+
+                var month = document.querySelectorAll('.bottom .left')
+                for (let i = 0; i < month.length; i++) {
+                    monthH5 = document.createElement('h5')
+                    monthH5.innerHTML = new Date().toLocaleDateString('pt-BR', { month: 'long' }).toUpperCase()
+                    month[i].appendChild(monthH5)
+                }
 
                 var despesas = document.getElementById('despesas')
                 var despesasH1 = document.createElement('h1')
@@ -282,7 +291,59 @@ const cardReceitas = async() => {
 
 cardReceitas();
 
-// async function converter(valor) {
-//     var numero = valor;
-//     document.getElementById('money').value = parseFloat(numero).toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' });
+function converter(valor) {
+    var numero = valor.toString().split('.').join('').replace(',', '.');
+    return numero
+}
+
+const moneyConverter = document.getElementById('description')
+moneyConverter.addEventListener('focus', () => {
+    money = document.getElementById('money')
+    console.log(money.value);
+
+    if (money.value) {
+        money.value.split(',').join('.').replace('R$', '');
+        converterM = new Intl.NumberFormat('pt-BR', { style: 'currency', currency: 'BRL' }).format(parseFloat(money.value))
+    } else {
+        money.value.split(',').join('.').replace('R$', '');
+        converterM = new Intl.NumberFormat('pt-BR', { style: 'currency', currency: 'BRL' }).format(parseFloat(money.value))
+    }
+
+    console.log(converterM);
+
+    money.value = converterM;
+    console.log(converterM);
+})
+
+// const teste = async (valor) => {
+//     teste2 = parseInt(valor);
+//     document.getAnimations('money').value = teste2;
+//     console.log(teste2.toFixed(2));
+// console.log(new Intl.NumberFormat('pt-BR', { style: 'currency', currency: 'BRL' }).format(teste2));
+// if (teste2.length >= 3) {
+//     teste2[teste2.length - 3];
+//     console.log(teste2[teste2.length - 3].to.join(','))
 // }
+
+// console.log(new Date(new Date().getTime() - (new Date().getTimezoneOffset() * 60000))
+//     .toISOString()
+//     .split("T")[0])
+
+function getLastDay() {
+    var month = new Date().toLocaleDateString('pt-BR', { month: 'numeric' }) - 1;
+    var year = new Date().toLocaleDateString('pt-BR', { year: 'numeric' });
+    var date = new Date(Date.UTC(year, month, 1));
+    var days = [];
+    while (date.getUTCMonth() == month) {
+        days.push(new Date(date));
+        date.setUTCDate(date.getUTCDate() + 1);
+
+    }
+    month += 1
+    var fullDate = `${year}-${month}-${days.length}`
+    var arr = [year, month, fullDate]
+    return
+
+}
+
+getLastDay()

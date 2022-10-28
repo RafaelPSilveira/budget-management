@@ -41,78 +41,8 @@ include("../controler/includes.php");
         </aside>
         <!------------------------END OF ASIDE------------------------>  
         <section  class="middle d-flex flex-column">
-            
-            <div class="header">
-                <h1>Visão Geral</h1>   
-            </div>
-
-            <div class="cards">
-
-                <div class="card">
-                    <div class="top">
-                        <div class="left">
-                            <span class="material-icons-sharp">monetization_on</span>
-                            <h2>Receitas</h2>
-                        </div>
-                    </div> 
-
-                    <div class="middle">
-                        <h1>R$ 3.000,00</h1>
-                    </div>
-
-                    <div class="bottom">
-                        <div class="left">
-                            <small>Mês de referência</small>
-                            <h5>JULHO</h5>
-                        </div>
-                    </div>                
-                </div>
-    
-                    <!-- END OF CARD 1-->
-    
-                <div class="card">
-                    <div class="top">
-                        <div class="left">
-                            <span class="material-icons-sharp">add_shopping_cart</span>
-                            <h2>Despesas</h2>
-                        </div>           
-                    </div>
-
-                    <div class="middle">
-                        <h1>R$ 1.800,00</h1>
-                    </div>
-
-                    <div class="bottom">
-                        <div class="left">
-                            <small>Mês de referência</small>
-                            <h5>JULHO</h5>
-                        </div>
-                    </div>                
-                </div>
-    
-                    <!-- END OF CARD 2-->
-    
-                <div class="card">
-                    <div class="top">
-                        <div class="left">
-                            <span class="material-icons-sharp">account_balance</span>
-                            <h2>Saldo</h2>
-                        </div>
-                    </div>
-
-                    <div class="middle">
-                        <h1>R$ 1.200,00</h1>
-                    </div>
-
-                    <div class="bottom">
-                        <div class="left">
-                            <small>Mês de referência</small>
-                            <h5>JULHO</h5>
-                        </div>
-                    </div>
-                </div> 
-                    <!-- END OF CARD 3-->
-            </div>
+       
+        <?php include ("../templates/cards.php"); ?>
 
             <div class="releases">
                     <div class=" newRelease d-flex d-inline justify-content-between align-items-center">

@@ -43,72 +43,8 @@ include("../controler/includes.php");
         <!------------------------END OF ASIDE------------------------>
         <section class="middle d-flex flex-column">
 
-            <div class="header">
-                <h1>Visão Geral</h1>
-            </div>
-
-            <div class="cards">
-
-                <div class="card">
-                    <div class="top">
-                        <div class="left">
-                            <span class="material-icons-sharp">monetization_on</span>
-                            <h2>Receitas</h2>
-                        </div>
-                    </div>
-
-                    <div class="middle" id="receitas"></div>
-
-                    <div class="bottom">
-                        <div class="left">
-                            <small>Mês de referência</small>
-                            <h5>JULHO</h5>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- END OF CARD 1-->
-
-                <div class="card">
-                    <div class="top">
-                        <div class="left">
-                            <span class="material-icons-sharp">add_shopping_cart</span>
-                            <h2>Despesas</h2>
-                        </div>
-                    </div>
-
-                    <div class="middle" id="despesas"></div>
-
-                    <div class="bottom">
-                        <div class="left">
-                            <small>Mês de referência</small>
-                            <h5>JULHO</h5>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- END OF CARD 2-->
-
-                <div class="card">
-                    <div class="top">
-                        <div class="left">
-                            <span class="material-icons-sharp">account_balance</span>
-                            <h2>Saldo</h2>
-                        </div>
-                    </div>
-
-                    <div class="middle" id="saldo"></div>
-
-                    <div class="bottom">
-                        <div class="left">
-                            <small>Mês de referência</small>
-                            <h5>JULHO</h5>
-                        </div>
-                    </div>
-                </div>
-                <!-- END OF CARD 3-->
-            </div>
-
+        <?php include ("../templates/cards.php"); ?>
+           
             <div class="releases ">
                 <div class=" newRelease d-flex d-inline justify-content-between align-items-center">
                     <h4>Ultimos Lançamentos</h4>
@@ -132,11 +68,12 @@ include("../controler/includes.php");
                                     <div class="mb-3">
                                         <label>Nome</label>
                                         <input type="text" name="name" id="name" class="form-control"
-                                            placeholder="Nome da Despesa">
+                                            placeholder="Nome do lançamento">
                                     </div>
                                     <div class="mb-3">
                                         <label for="type">Tipo de Lançamento: </label>
                                         <select id="balance" name="tipo">
+                                            <option value="Receita">Selecione</option>
                                             <option value="Receita">Receita</option>
                                             <option value="Despesa">Despesa</option>
                                         </select>
@@ -153,7 +90,7 @@ include("../controler/includes.php");
                                     </div>
                                     <div class="mb-3">
                                         <label>Valor</label>
-                                        <input type="text" name="value" id="money" class="form-control" placeholder="R$ 0,00">
+                                        <input type="text" name="value" id="money" class="form-control" placeholder="R$ 0,00" >
                                     </div>
                                     <div class="mb-3">
                                         <label>Descrição</label>
