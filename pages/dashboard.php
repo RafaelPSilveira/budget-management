@@ -1,5 +1,6 @@
 <?php
 include("../controler/includes.php");
+
 ?>
 
 <!DOCTYPE html>
@@ -63,7 +64,7 @@ include("../controler/includes.php");
 
                             <div class="modal-body">
 
-                                <form method="POST" action="../model/releaseDB.php">
+                                <form method="POST" action="../model/releaseDB.php" id="form">
                                     <input type="hidden" id="hdnSession" value='<?php echo $_SESSION['email'] ?>' />
                                     <div class="mb-3">
                                         <label>Nome</label>
@@ -73,7 +74,7 @@ include("../controler/includes.php");
                                     <div class="mb-3">
                                         <label for="type">Tipo de Lançamento: </label>
                                         <select id="balance" name="tipo">
-                                            <option value="Receita">Selecione</option>
+                                            <option value="">Selecione</option>
                                             <option value="Receita">Receita</option>
                                             <option value="Despesa">Despesa</option>
                                         </select>
@@ -81,16 +82,12 @@ include("../controler/includes.php");
                                     <div class="mb-3">
                                         <label for="category">Selecione a Categoria: </label>
                                         <select id="category" name="category">
-                                            <!-- <option value="Despesas Fixas">Despesas Fixas</option>
-                                            <option value="Alimentação">Alimentação</option>
-                                            <option value="Saúde">Saúde</option>
-                                            <option value="Lazer">Lazer</option>
-                                            <option value="Outros">Outros</option> -->
+                                            <option value="">Selecione</option>
                                         </select>
                                     </div>
                                     <div class="mb-3">
                                         <label>Valor</label>
-                                        <input type="text" name="value" id="money" class="form-control" placeholder="R$ 0,00" >
+                                        <input type="text" name="value" id="money" class="form-control" placeholder="R$ 0,00" oninput="" >
                                     </div>
                                     <div class="mb-3">
                                         <label>Descrição</label>
@@ -154,6 +151,7 @@ include("../controler/includes.php");
         integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous">
     </script>
     <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="../plugins/jquery.maskMoney.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
     <script src="../js/crudReleases.js"></script>
     <script src="../js/main.js"></script>

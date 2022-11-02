@@ -1,6 +1,14 @@
+$('#money').maskMoney({ prefix: 'R$ ', allowNegative: false, thousands: '.', decimal: ',', affixesStay: true });
+
+function tiraMasc(maskInput) {
+    maskInput = $(maskInput)
+    return maskInput.maskMoney('unmasked')[0]
+}
+
 btnLancar = document.getElementById('lancar');
 btnLancar.addEventListener("click", function(e) {
     e.preventDefault();
+    clearModal();
 
     btnSalvar = document.getElementById('btn-NewReleases');
     btnSalvar.classList.add('btn-NewReleases');
@@ -16,9 +24,7 @@ btnLancar.addEventListener("click", function(e) {
                     let name = document.getElementById("name").value;
                     let balance = document.getElementById("balance").value;
                     let category = document.getElementById("category").value;
-                    let value = document.getElementById("money").value;
-                    value = converter(value);
-                    console.log(value);
+                    let value = tiraMasc('#money');
                     let description = document.getElementById("description").value;
                     let sessionEmail = document.getElementById("hdnSession").value;
 
@@ -95,17 +101,21 @@ function btnUpdate(element) {
     var categoriaRelease = $(element).closest("tr").find("td:nth-child(4)").text();
     var valorRelease = $(element).closest("tr").find("td:nth-child(5)").text();
     var obsRelease = $(element).closest("tr").find("td:nth-child(6)").text();
-    console.log(idRelease);
-    var campo = document.getElementById('name');
-    campo.value = nomeRelease.toString();
-    var campo = document.getElementById('balance');
-    campo.value = tipoRelease.toString();
-    var campo = document.getElementById('category');
-    campo.value = categoriaRelease.toString();
-    var campo = document.getElementById('money');
-    campo.value = valorRelease.toString();
-    var campo = document.getElementById('description');
-    campo.value = obsRelease.toString();
+
+    var inputName = document.getElementById('name');
+    inputName.value = nomeRelease.toString();
+
+    var inputType = document.getElementById('balance');
+    inputType.value = tipoRelease.toString();
+    var inputCategory = document.getElementById('category');
+
+    createOpt();
+
+    inputCategory.value = categoriaRelease.toString();
+    var inputValue = document.getElementById('money');
+    inputValue.value = valorRelease.toString();
+    var inputObs = document.getElementById('description');
+    inputObs.value = obsRelease.toString();
 
 
 
@@ -115,7 +125,6 @@ function btnUpdate(element) {
         btnReleases = document.getElementsByClassName("update");
         btnReleases[0].addEventListener("click", function(e) {
             e.preventDefault();
-            console.log('chguei aqui')
             updateRelease(idRelease);
         })
     }
@@ -127,7 +136,7 @@ async function updateRelease(element) {
         let name = document.getElementById("name").value;
         let balance = document.getElementById("balance").value;
         let category = document.getElementById("category").value;
-        let value = document.getElementById("money").value;
+        let value = tiraMasc('#money');
         let description = document.getElementById("description").value;
 
         var params = { idRelease: idRelease, name: name, balance: balance, category: category, value: value, description: description };
@@ -181,8 +190,12 @@ function deleteRelease(element) {
 
 listenCategory = document.getElementById('balance')
 listenCategory.addEventListener('click', async() => {
+    createOpt();
+})
+
+function createOpt() {
     var receita = [];
-    receita[0] = 'salario';
+    receita[0] = 'Salário';
     receita[1] = 'Renda extra';
     receita[2] = 'Rendimento';
     receita[3] = 'Outros';
@@ -194,12 +207,7 @@ listenCategory.addEventListener('click', async() => {
     despesas[3] = 'Lazer';
     despesas[4] = 'Outros';
 
-
-    let btnBalance = document.getElementById('balance').value
-    console.log(btnBalance);
     let campCategory = document.getElementById('category')
-
-
 
     if (document.getElementById('balance').value == 'Receita') {
 
@@ -210,7 +218,6 @@ listenCategory.addEventListener('click', async() => {
                 opt.innerHTML = receita[i];
                 campCategory.appendChild(opt);
             } else {
-
                 $("#category option").each(function() {
                     $(this).remove();
                 });
@@ -247,17 +254,22 @@ listenCategory.addEventListener('click', async() => {
 
             }
     }
-})
+}
 
 const cardReceitas = async() => {
     try {
+        let year = await getLastDay()[0];
+        let month = await getLastDay()[1].toString();
+        let fullDate = await getLastDay()[2];
 
-        await axios.get('../model/releaseDB.php', { params: { type: "read_cards" }, }, { headers: { 'Content-Type': 'application/json' } })
+
+        var params = { year: year, month: month, fullDate: fullDate }
+
+        await axios.get('../model/releaseDB.php?type=read_cards', { params: params }, { headers: { 'Content-Type': 'application/json' } })
             .then((response) => {
 
-                var valorReceitas = response.data[0].value_receitas
-                var valorDespesas = response.data[1].value_despesas
-
+                var valorReceitas = isNaN(response.data[0].value_receitas) ? 0 : response.data[0].value_receitas
+                var valorDespesas = isNaN(response.data[1].value_despesas) ? 0 : response.data[1].value_despesas
 
                 var receitas = document.getElementById('receitas')
                 var receitasH1 = document.createElement('h1')
@@ -296,39 +308,6 @@ function converter(valor) {
     return numero
 }
 
-const moneyConverter = document.getElementById('description')
-moneyConverter.addEventListener('focus', () => {
-    money = document.getElementById('money')
-    console.log(money.value);
-
-    if (money.value) {
-        money.value.split(',').join('.').replace('R$', '');
-        converterM = new Intl.NumberFormat('pt-BR', { style: 'currency', currency: 'BRL' }).format(parseFloat(money.value))
-    } else {
-        money.value.split(',').join('.').replace('R$', '');
-        converterM = new Intl.NumberFormat('pt-BR', { style: 'currency', currency: 'BRL' }).format(parseFloat(money.value))
-    }
-
-    console.log(converterM);
-
-    money.value = converterM;
-    console.log(converterM);
-})
-
-// const teste = async (valor) => {
-//     teste2 = parseInt(valor);
-//     document.getAnimations('money').value = teste2;
-//     console.log(teste2.toFixed(2));
-// console.log(new Intl.NumberFormat('pt-BR', { style: 'currency', currency: 'BRL' }).format(teste2));
-// if (teste2.length >= 3) {
-//     teste2[teste2.length - 3];
-//     console.log(teste2[teste2.length - 3].to.join(','))
-// }
-
-// console.log(new Date(new Date().getTime() - (new Date().getTimezoneOffset() * 60000))
-//     .toISOString()
-//     .split("T")[0])
-
 function getLastDay() {
     var month = new Date().toLocaleDateString('pt-BR', { month: 'numeric' }) - 1;
     var year = new Date().toLocaleDateString('pt-BR', { year: 'numeric' });
@@ -342,8 +321,23 @@ function getLastDay() {
     month += 1
     var fullDate = `${year}-${month}-${days.length}`
     var arr = [year, month, fullDate]
-    return
+    return arr;
 
 }
 
-getLastDay()
+function clearModal() {
+
+    let name = document.getElementById("name");
+    let balance = document.getElementById("balance");
+    let category = document.getElementById("category");
+    let value = document.getElementById("money");
+    let description = document.getElementById("description");
+
+    name.value = '';
+    balance.value = '';
+    category.value = '';
+    value.value = '';
+    description.value = '';
+    console.log('aqui')
+
+}

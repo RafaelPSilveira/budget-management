@@ -3,15 +3,17 @@
     include('connectDB.php');
     include('../controler/includes.php');
 
+    
     $result = array();
-
-        
+    
+    
     if (empty($_REQUEST["type"])){
         
         $result['success'] = false;
         $result['msg']     = "Falta uma parâmetro na requisição.";
         
     } else{
+       
 
         $_POST = json_decode(file_get_contents("php://input"),true);    
        
@@ -27,7 +29,8 @@
         $getUserID =$pdo->query("SELECT id FROM `user` WHERE email='$email'")->fetch();
         $getID = $getUserID['id'];
 
-            
+        
+         
         switch ($_REQUEST['type']){
     
             case 'create_release':
@@ -60,22 +63,22 @@
                     
                     $result = $releases;
                     break;
-                    
-                    // SELECT * FROM releases WHERE date_release >= '2022-10-01 00:00:00' and date_release <= '2022-10-31 23:59:59' and user_id=1;
-            case 'read_cards':
-                // $year = $_POST ? $_POST['year'] : "";
-                // $month = $_POST ? $_POST['month'] : "";
-                // $fullDate = $_POST ? $_POST['fullDate'] : "";
-                
-                $receitas = $pdo->prepare("SELECT SUM(value) AS value_receitas FROM `releases` WHERE user_id='$getID' AND type='Receita'");
+
+                   
+            case 'read_cards':  
+                $year = $_GET ? $_GET['year'] : "";
+                $month = $_GET ? $_GET['month'] : "";
+                $fullDate = $_GET ? $_GET['fullDate'] : "";
+              
+
+                $receitas = $pdo->prepare("SELECT SUM(value) AS value_receitas FROM `releases` WHERE user_id=$getID AND type='Receita' AND date_release >= '$year-$month-01 00:00:00' AND date_release <= '$fullDate 23:59:59'");
                 $receitas->execute();
 
-                $despesas = $pdo->prepare("SELECT SUM(value) AS value_despesas FROM `releases` WHERE user_id='$getID' AND type='Despesa'");
+                $despesas = $pdo->prepare("SELECT SUM(value) AS value_despesas FROM `releases` WHERE user_id=$getID AND type='Despesa' AND date_release >= '$year-$month-01 00:00:00' AND date_release <= '$fullDate 23:59:59'");
                 $despesas->execute();
 
                 $row = [$receitas->fetch(PDO::FETCH_ASSOC),
-                        $despesas->fetch(PDO::FETCH_ASSOC),
-    
+                        $despesas->fetch(PDO::FETCH_ASSOC),    
                 ];
                 
                 // $sum = $row['value_receitas'];
@@ -83,7 +86,7 @@
 
                break;
     
-
+            
             case 'update_releases':
                 $id = $_POST ? $_POST['idRelease'] : "";
                 $stmt = $pdo->prepare("UPDATE releases SET name_include=:name_include, type=:type, category=:category, value=:value, obs=:obs WHERE id=:id");
@@ -117,6 +120,8 @@
 
 
     }
+
+
 
 
     
