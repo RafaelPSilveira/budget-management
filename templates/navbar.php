@@ -10,17 +10,20 @@
                 <span class="material-icons-sharp active">light_mode</span>
                 <span class="material-icons-sharp">dark_mode</span>
             </div>
-            <div class="profile">
+
+            <!-- <div class="profile">
                 <div class="profilePhoto">
                 <img src="../img/logoUser.png">
                 </div>
-            </div>
+            </div> -->
+            
             <button id="menu-btn">
                 <span class="material-icons-sharp">menu</span>
             </button>
         </div>
+
         <div class="dropdown">
-            <button type="button" class="btn btn-primary dropdown-toggle" data-bs-toggle="dropdown">Rafael</button>
+            <button type="button" class="btn btn-primary dropdown-toggle" data-bs-toggle="dropdown"><?php echo $_SESSION['name']?></button>
             <ul class="dropdown-menu">
                 <li><a class="dropdown-item" href="../controler/function.php?logout=true">Sair</a></li>
             </ul>

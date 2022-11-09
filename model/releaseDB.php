@@ -22,6 +22,7 @@
         $category     = $_POST ? $_POST['category'] : "";
         $value        = $_POST ? $_POST['value'] : "";
         $description  = $_POST ? $_POST['description'] : "";
+        $releaseDate = $_POST ? $_POST['releaseDate'] : "";
         $email        = $_POST ? $_POST['sessionEmail'] : $_SESSION['email'];
              
         $pdo = connectDB();
@@ -35,7 +36,7 @@
     
             case 'create_release':
             
-                $stmt = $pdo->prepare('INSERT INTO releases(name_include,type,category, value,obs,user_id) VALUES (:name_include,:type,:category, :value,:obs,:user_id)');
+                $stmt = $pdo->prepare('INSERT INTO releases(name_include,type,category, value,obs,user_id, release_date) VALUES (:name_include,:type,:category, :value,:obs,:user_id,:release_date)');
                 $stmt->execute([
                 'name_include' => $name_include,
                 'type' => $type,
@@ -43,18 +44,20 @@
                 'value' => $value,
                 'obs' => $description,
                 'user_id' => $getID,
+                'release_date' => $releaseDate,
                 
                 ]);
                 $result['msg'] = "Lançado com sucesso";
                 $result['success'] = true;
                 break;
+
                 case 'read_releases':
                     $limite="";
                     if(!empty($_REQUEST['limite'])){
                         $limite = $_REQUEST['limite'];
                         $limite = $limite !=0 ? "LIMIT $limite" : "";
                     }
-                    $getReleases = $pdo->query("SELECT id, name_include, type, category, value, obs FROM `releases` WHERE user_id='$getID' ORDER BY date_release DESC $limite");
+                    $getReleases = $pdo->query("SELECT id, name_include,release_date, type, category, value, obs FROM `releases` WHERE user_id='$getID' ORDER BY release_date DESC $limite");
                     $releases = array();
                     
                     while ($row = $getReleases->fetch(PDO::FETCH_ASSOC)) {
@@ -71,10 +74,10 @@
                 $fullDate = $_GET ? $_GET['fullDate'] : "";
               
 
-                $receitas = $pdo->prepare("SELECT SUM(value) AS value_receitas FROM `releases` WHERE user_id=$getID AND type='Receita' AND date_release >= '$year-$month-01 00:00:00' AND date_release <= '$fullDate 23:59:59'");
+                $receitas = $pdo->prepare("SELECT SUM(value) AS value_receitas FROM `releases` WHERE user_id=$getID AND type='Receita' AND release_date >= '$year-$month-01' AND release_date <= '$fullDate'");
                 $receitas->execute();
 
-                $despesas = $pdo->prepare("SELECT SUM(value) AS value_despesas FROM `releases` WHERE user_id=$getID AND type='Despesa' AND date_release >= '$year-$month-01 00:00:00' AND date_release <= '$fullDate 23:59:59'");
+                $despesas = $pdo->prepare("SELECT SUM(value) AS value_despesas FROM `releases` WHERE user_id=$getID AND type='Despesa' AND release_date >= '$year-$month-01' AND release_date <= '$fullDate'");
                 $despesas->execute();
 
                 $row = [$receitas->fetch(PDO::FETCH_ASSOC),
@@ -89,8 +92,9 @@
             
             case 'update_releases':
                 $id = $_POST ? $_POST['idRelease'] : "";
-                $stmt = $pdo->prepare("UPDATE releases SET name_include=:name_include, type=:type, category=:category, value=:value, obs=:obs WHERE id=:id");
+                $stmt = $pdo->prepare("UPDATE releases SET release_date=:release_date, name_include=:name_include, type=:type, category=:category, value=:value, obs=:obs WHERE id=:id");
                 $stmt->execute([
+                'release_date' => $releaseDate,
                 'name_include' => $name_include,
                 'type' => $type,
                 'category' => $category,

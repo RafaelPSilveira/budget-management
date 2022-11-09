@@ -164,9 +164,30 @@ nav .profile-area button {
     box-shadow: 0px 3px 5px 0px rgba(0, 0, 0, 0.31);
 }
 
+main section.right .grafic {
+    background: var(--color-white);
+    border-radius: var(--card-border-radius);
+}
+
+
+/* main section.right .grafic .header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: var(--card-padding);
+    padding-bottom: 0;
+} */
+
 span.input-group-addon i {
     color: #009edf;
     font-size: 17px;
+}
+
+.span-required {
+    font-size: 12px;
+    display: none;
+    color: red;
+    margin: 3px 0 0 1px;
 }
 
 .btn-login {
@@ -192,6 +213,14 @@ span.input-group-addon i {
 
 .margin-login {
     margin: 140px auto;
+}
+
+.required {
+    width: 100%;
+}
+
+.invalid-feedback {
+    display: none !important;
 }
 
 

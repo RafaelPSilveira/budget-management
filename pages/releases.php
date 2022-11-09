@@ -60,47 +60,45 @@ include("../controler/includes.php");
                                 </div>
 
                                 <div class="modal-body">
-
-                                    <form method="POST" action="../model/releaseDB.php">
-                                    <input type="hidden" id="hdnSession" value='<?php echo $_SESSION['email'] ?>'/>
-                                        <div class="mb-3">
-                                            <label>Nome</label>
-                                            <input type="text" name="name" id="name" class="form-control" placeholder="Nome da Despesa">
-                                        </div>
-                                        <div class="mb-3">
-                                            <label for="type">Tipo de Lançamento: </label>
-                                            <select id="balance" name="tipo">
-                                                <option value="receita">Receita</option>
-                                                <option value="despesa">Despesa</option>
-                                            </select> 
-                                        </div> 
-                                        <div class="mb-3">
-                                            <label for="category">Selecione a Categoria: </label>
-                                            <select id="category" name="category">
-                                                <option value="Despesas Fixas">Despesas Fixas</option>
-                                                <option value="Alimentação">Alimentação</option>
-                                                <option value="Saúde">Saúde</option>
-                                                <option value="Lazer">Lazer</option>
-                                                <option value="Outros">Outros</option>
-                                            </select> 
-                                        </div>
-                                        <div class="mb-3">
-                                            <label>Valor</label>
-                                            <input type="text" name="value" id="money" class="form-control" placeholder="R$ 0,00">
-                                        </div>
-                                        <div class="mb-3">
-                                            <label>Descrição</label>
-                                            <input type="text" name="obs" id="description" class="form-control" placeholder="Descrição detalhada (Opcional)">
-                                        </div>
-                                        <div class="mb-3">
-                                            <label>Descrição</label>
-                                            <input type="text" name="obs" id="description" class="form-control" placeholder="Descrição detalhada (Opcional)">
-                                        </div>
-                                        <div class="modal-footer">
-                                            <button type="submit" id="btn-NewReleases" class="btn btn-success btn-NewReleases" data-bs-dismiss="modal">Salvar</button>
-                                        </div>
-                                    </form>
-
+                                <form method="POST" action="../model/releaseDB.php" id="form">
+                                    <input type="hidden" id="hdnSession" value='<?php echo $_SESSION['email'] ?>' />
+                                    <div class="mb-3">
+                                        <label>Nome</label>
+                                        <input class="required" type="text" name="name" id="name" class="form-control" placeholder="Nome do lançamento">
+                                        <!-- <span class="span-required">Nome do lançamento é obrigatório</span> -->
+                                    </div>
+                                    <div class="mb-3">
+                                        <label>Data</label>
+                                        <input type="date" name="date" id="date" class="form-control">
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="type">Tipo de Lançamento: </label>
+                                        <select class="required" id="balance" name="tipo">
+                                            <option value="">Selecione</option>
+                                            <option value="Receita">Receita</option>
+                                            <option value="Despesa">Despesa</option>
+                                            <!-- <span class="span-required">Tipo do lançamento é obrigatório</span> -->
+                                        </select>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="category">Selecione a Categoria: </label>
+                                        <select class="required" id="category" name="category">
+                                        </select>
+                                        <!-- <span class="span-required">Categoria do lançamento é obrigatória</span> -->
+                                    </div>
+                                    <div class="mb-3">
+                                        <label>Valor</label>
+                                        <input type="text" name="value" id="money" class="form-control required" placeholder="R$ 0,00">
+                                        <!-- <span class="span-required">Valor do lançamento é obrigatório</span> -->
+                                    </div>
+                                    <div class="mb-3">
+                                        <label>Descrição</label>
+                                        <input type="text" name="obs" id="description" class="form-control placeholder="Descrição detalhada (Opcional)">
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="submit" id="btn-NewReleases" class="btn btn-success"data-bs-dismiss="modal">Salvar</button>
+                                    </div>
+                                </form>
                                 </div>
         
                             </div>
@@ -111,19 +109,27 @@ include("../controler/includes.php");
                     <table id="releases">
                         <thead>
                             <tr>
-                            <th>ID</th> 
+                                <th>ID</th>
+                                <th>Data</th>
                                 <th>Nome</th>
                                 <th>Tipo</th>
                                 <th>Categoria</th>
                                 <th>Valor</th>
-                                <th>Observações</th>  
-                                <th>Opções</th> 
+                                <th>Observações</th>
+                                <th>Opções</th>
                             </tr>
                         </thead>
                         <tbody>
                           
                         </tbody>
                     </table>
+                    <ul class="pagination justify-content-center">
+                        <li class="page-item"><a class="page-link" href="#">Voltar</a></li>
+                        <li class="page-item"><a class="page-link" href="#">1</a></li>
+                        <li class="page-item"><a class="page-link" href="#">2</a></li>
+                        <li class="page-item"><a class="page-link" href="#">3</a></li>
+                        <li class="page-item"><a class="page-link" href="#">Próx.</a></li>
+                    </ul>
                 </div> 
         </section>
     </main>
@@ -133,6 +139,8 @@ include("../controler/includes.php");
     <script src="../plugins/jquery.maskMoney.min.js"></script>
 	<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
     <script src="../js/crudReleases.js"></script>
+    <script src="../js/main.js"></script>
+
     
 </body>
 </html>

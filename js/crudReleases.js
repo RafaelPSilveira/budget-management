@@ -22,13 +22,15 @@ btnLancar.addEventListener("click", function(e) {
             const newRelease = async() => {
                 try {
                     let name = document.getElementById("name").value;
+                    let release_date = document.getElementById("date").value;
+                    console.log(release_date);
                     let balance = document.getElementById("balance").value;
                     let category = document.getElementById("category").value;
                     let value = tiraMasc('#money');
                     let description = document.getElementById("description").value;
                     let sessionEmail = document.getElementById("hdnSession").value;
 
-                    var params = { name: name, balance: balance, category: category, value: value, description: description, sessionEmail: sessionEmail };
+                    var params = { name: name, releaseDate: release_date, balance: balance, category: category, value: value, description: description, sessionEmail: sessionEmail };
 
                     await axios
                         .post(
@@ -55,7 +57,7 @@ btnLancar.addEventListener("click", function(e) {
 
 const readRelease = async() => {
     try {
-        let limite = window.location.href == "http://localhost:8000/pages/dashboard.php" ? 5 : 0
+        let limite = window.location.href == "http://localhost:8000/pages/dashboard.php" ? 5 : 10
         await axios.get('../model/releaseDB.php?limite=' + limite, { params: { type: "read_releases" }, }, { headers: { 'Content-Type': 'application/json' } })
             .then(function(response) {
                 releases = response.data;
@@ -68,14 +70,16 @@ const readRelease = async() => {
                         var numLines = table.rows.length;
                         var linha = table.insertRow(numLines);
                         var idRelease = linha.insertCell(0);
-                        var nome = linha.insertCell(1);
-                        var tipo = linha.insertCell(2);
-                        var categoria = linha.insertCell(3);
-                        var valor = linha.insertCell(4);
-                        var OBS = linha.insertCell(5);
-                        var opcoes = linha.insertCell(6);
+                        var date = linha.insertCell(1);
+                        var nome = linha.insertCell(2);
+                        var tipo = linha.insertCell(3);
+                        var categoria = linha.insertCell(4);
+                        var valor = linha.insertCell(5);
+                        var OBS = linha.insertCell(6);
+                        var opcoes = linha.insertCell(7);
                         idRelease.innerHTML = releases[release].id;
                         nome.innerHTML = releases[release].name_include;
+                        date.innerHTML = new Date(releases[release].release_date).toLocaleDateString('pt-BR')
                         tipo.innerHTML = releases[release].type;
                         categoria.innerHTML = releases[release].category;
                         valor.innerHTML = parseFloat(releases[release].value).toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' });
@@ -96,24 +100,30 @@ readRelease();
 function btnUpdate(element) {
 
     var idRelease = $(element).closest("tr").find("td:first").text();
-    var nomeRelease = $(element).closest("tr").find("td:nth-child(2)").text();
-    var tipoRelease = $(element).closest("tr").find("td:nth-child(3)").text();
-    var categoriaRelease = $(element).closest("tr").find("td:nth-child(4)").text();
-    var valorRelease = $(element).closest("tr").find("td:nth-child(5)").text();
-    var obsRelease = $(element).closest("tr").find("td:nth-child(6)").text();
+    var releaseDate = $(element).closest("tr").find("td:nth-child(2)").text();
+    var nomeRelease = $(element).closest("tr").find("td:nth-child(3)").text();
+    var tipoRelease = $(element).closest("tr").find("td:nth-child(4)").text();
+    var categoriaRelease = $(element).closest("tr").find("td:nth-child(5)").text();
+    var valorRelease = $(element).closest("tr").find("td:nth-child(6)").text();
+    var obsRelease = $(element).closest("tr").find("td:nth-child(7)").text();
 
     var inputName = document.getElementById('name');
     inputName.value = nomeRelease.toString();
 
+    var inputDate = document.getElementById('date');
+    inputDate.value = convertDate(releaseDate.toString());
+    console.log(releaseDate);
+
     var inputType = document.getElementById('balance');
     inputType.value = tipoRelease.toString();
+
     var inputCategory = document.getElementById('category');
-
     createOpt();
-
     inputCategory.value = categoriaRelease.toString();
+
     var inputValue = document.getElementById('money');
     inputValue.value = valorRelease.toString();
+
     var inputObs = document.getElementById('description');
     inputObs.value = obsRelease.toString();
 
@@ -134,12 +144,13 @@ async function updateRelease(element) {
     try {
         let idRelease = element;
         let name = document.getElementById("name").value;
+        let releaseDate = document.getElementById("date").value;
         let balance = document.getElementById("balance").value;
         let category = document.getElementById("category").value;
         let value = tiraMasc('#money');
         let description = document.getElementById("description").value;
 
-        var params = { idRelease: idRelease, name: name, balance: balance, category: category, value: value, description: description };
+        var params = { idRelease: idRelease, name: name, releaseDate: releaseDate, balance: balance, category: category, value: value, description: description };
 
         await axios
             .post(
@@ -328,16 +339,41 @@ function getLastDay() {
 function clearModal() {
 
     let name = document.getElementById("name");
+    let date = document.getElementById("date");
     let balance = document.getElementById("balance");
     let category = document.getElementById("category");
     let value = document.getElementById("money");
     let description = document.getElementById("description");
 
     name.value = '';
+    date.value = '';
     balance.value = '';
     category.value = '';
     value.value = '';
     description.value = '';
-    console.log('aqui')
-
 }
+
+// function converteDate(date) {
+//     let d = new Date(date);
+//     let ye = new Intl.DateTimeFormat('en', { year: 'numeric' }).format(d);
+//     let da = new Intl.DateTimeFormat('en', { month: '2-digit' }).format(d);
+//     let mo = new Intl.DateTimeFormat('en', { day: '2-digit' }).format(d);
+//     let fullDate = `${ye}-${mo}-${da}`;
+//     console.log(fullDate);
+//     return fullDate;
+// }
+
+var todaysDate = new Date();
+
+function convertDate(date) {
+    var yyyy = new Date(date).getFullYear().toString();
+    var mm = (new Date(date).getMonth() + 1).toString();
+    var dd = new Date(date).getDate().toString();
+    console.log('mes:' + mm, "dia:" + dd);
+    var mmChars = mm.split('');
+    var ddChars = dd.split('');
+
+    return yyyy + '-' + (mmChars[1] ? mm : "0" + mmChars[0]) + '-' + (ddChars[1] ? dd : "0" + ddChars[0]);
+}
+
+console.log(convertDate(todaysDate));

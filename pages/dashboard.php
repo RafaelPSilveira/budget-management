@@ -12,14 +12,12 @@ include("../controler/includes.php");
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../css/style.css">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Sharp" rel="stylesheet">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
     <title>Dashboard</title>
 </head>
 
 <body>
     <?php include ("../templates/navbar.php"); ?>
-
     <main class="text-decoration-none">
         <aside class="d-flex justify-content-between">
             <button id="close-btn">
@@ -64,16 +62,19 @@ include("../controler/includes.php");
 
                             <div class="modal-body">
 
-                                <form method="POST" action="../model/releaseDB.php" id="form">
+                                <form method="POST" action="../model/releaseDB.php" id="form" class="was-validated">
                                     <input type="hidden" id="hdnSession" value='<?php echo $_SESSION['email'] ?>' />
                                     <div class="mb-3">
                                         <label>Nome</label>
-                                        <input type="text" name="name" id="name" class="form-control"
-                                            placeholder="Nome do lançamento">
+                                        <input type="text" name="name" id="name" class="required" placeholder="Nome do lançamento" required>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label>Data</label>
+                                        <input type="date" name="date" id="date" class="required" required>
                                     </div>
                                     <div class="mb-3">
                                         <label for="type">Tipo de Lançamento: </label>
-                                        <select id="balance" name="tipo">
+                                        <select class="required" id="balance" name="tipo" required>
                                             <option value="">Selecione</option>
                                             <option value="Receita">Receita</option>
                                             <option value="Despesa">Despesa</option>
@@ -81,22 +82,19 @@ include("../controler/includes.php");
                                     </div>
                                     <div class="mb-3">
                                         <label for="category">Selecione a Categoria: </label>
-                                        <select id="category" name="category">
-                                            <option value="">Selecione</option>
+                                        <select class="required" id="category" name="category" required>
                                         </select>
                                     </div>
                                     <div class="mb-3">
                                         <label>Valor</label>
-                                        <input type="text" name="value" id="money" class="form-control" placeholder="R$ 0,00" oninput="" >
+                                        <input type="text" name="value" id="money" class="required" placeholder="R$ 0,00" required>
                                     </div>
                                     <div class="mb-3">
                                         <label>Descrição</label>
-                                        <input type="text" name="obs" id="description" class="form-control"
-                                            placeholder="Descrição detalhada (Opcional)">
+                                        <input type="text" name="obs" id="description" class="required"placeholder="Descrição detalhada (Opcional)">
                                     </div>
                                     <div class="modal-footer">
-                                        <button type="submit" id="btn-NewReleases" class="btn btn-success"
-                                            data-bs-dismiss="modal">Salvar</button>
+                                        <button type="submit" id="btn-NewReleases" class="btn btn-success disabled" data-bs-dismiss="modal">Salvar</button>
                                     </div>
                                 </form>
 
@@ -130,6 +128,7 @@ include("../controler/includes.php");
                     <thead>
                         <tr>
                             <th>ID</th>
+                            <th>Data</th>
                             <th>Nome</th>
                             <th>Tipo</th>
                             <th>Categoria</th>
@@ -145,11 +144,18 @@ include("../controler/includes.php");
                 <a href="../pages/releases.php" class="btn-several">Ver Todas</a>
             </div>
         </section>
+        <!-- <section class="right">
+            <div class="grafic">
+                <div class="header">
+                    <h2>Investments</h2>
+                </div>
+                <div>
+                <canvas id="myChart" style="width:100%;max-width:600px"></canvas>
+                </div>
+        </section> -->
     </main>
-    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.8.0/chart.min.js" integrity="sha512-sW/w8s4RWTdFFSduOTGtk4isV1+190E/GghVffMA9XczdJ2MDzSzLEubKAs5h0wzgSJOQTRYyaz73L3d6RtJSg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script> -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous">
-    </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.8.0/chart.min.js" integrity="sha512-sW/w8s4RWTdFFSduOTGtk4isV1+190E/GghVffMA9XczdJ2MDzSzLEubKAs5h0wzgSJOQTRYyaz73L3d6RtJSg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
     <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script src="../plugins/jquery.maskMoney.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>

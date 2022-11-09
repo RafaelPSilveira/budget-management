@@ -31,18 +31,18 @@ if(!empty($_REQUEST['logout'])){
             ':email' => $email,
             ':password' => $password
         ]);
-
+        
         if($getLogin->fetch() < 1){
-
             header('Location: ../index.php');
             return $retorno;
         }else{
-                       
+
             $arrLogin = [
                 'email' => $email,
-                'password' => $password
+                'password' => $password,
+                'name'=> getName($email),          
             ];
-            
+           
             montaSessao($arrLogin);                     
             
             if($_REQUEST['lembrar-me'] == 'on'){
@@ -76,21 +76,21 @@ if(!empty($_REQUEST['logout'])){
     }
 
     function existsCookies (){
-
         $pdo = new PDO('mysql:host=localhost;dbname=budget-management', 'root', '123456');
         $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
         $pdo->setAttribute(PDO::ATTR_EMULATE_PREPARES, false);
-
+        
         $getEmail = $pdo -> query("SELECT email FROM user WHERE token='".$_COOKIE['lembrar-me']."'")->fetch();
-
         $arrLogin = [
             'email' => $getEmail['email'] ,
+            'name'=> getName($getEmail['email'])
+                 
         ];
-
+        
         montaSessao($arrLogin);
 
     }
-
+    
 
     function logout(){
         setCookie('lembrar-me',null,1,'/','localhost');        
@@ -103,7 +103,7 @@ if(!empty($_REQUEST['logout'])){
                 
         $pdo = connectDB();
 
-        $getLogin = $pdo->query("SELECT email,password FROM user WHERE token='".$getCookie['lembrar-me']."'")->fetch();
+        $getLogin = $pdo->query("SELECT email,user, password FROM user WHERE token='".$getCookie['lembrar-me']."'")->fetch();
         $getEmail = $getLogin['email'];
         $getPassword = $getLogin['password'];       
 
@@ -132,6 +132,19 @@ if(!empty($_REQUEST['logout'])){
         setCookie('lembrar-me',$token,$expire,'/','localhost');            
                     
     }
+
+    function getName($email){
+        $pdo = new PDO('mysql:host=localhost;dbname=budget-management', 'root', '123456');
+        $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+        $pdo->setAttribute(PDO::ATTR_EMULATE_PREPARES, false);
+        $getName = $pdo->query("SELECT name FROM user WHERE email='$email' ")->fetch();
+        return $getName['name'];
+    }
+
+    
+
+        
+    
 
     
 
