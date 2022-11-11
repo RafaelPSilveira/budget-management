@@ -70,7 +70,7 @@ include("../controler/includes.php");
                                     </div>
                                     <div class="mb-3">
                                         <label>Data</label>
-                                        <input type="date" name="date" id="date" class="required" required>
+                                        <input type="date" name="date" max="" id="date" class="required" required>
                                     </div>
                                     <div class="mb-3">
                                         <label for="type">Tipo de Lançamento: </label>
@@ -158,6 +158,7 @@ include("../controler/includes.php");
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
     <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script src="../plugins/jquery.maskMoney.min.js"></script>
+    <source src="../plugins/moment.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
     <script src="../js/crudReleases.js"></script>
     <script src="../js/main.js"></script>

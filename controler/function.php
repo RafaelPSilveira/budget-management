@@ -76,7 +76,7 @@ if(!empty($_REQUEST['logout'])){
     }
 
     function existsCookies (){
-        $pdo = new PDO('mysql:host=localhost;dbname=budget-management', 'root', '123456');
+        $pdo = new PDO('mysql:host=localhost;dbname=budget-management', 'root', 'root');
         $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
         $pdo->setAttribute(PDO::ATTR_EMULATE_PREPARES, false);
         
@@ -134,7 +134,7 @@ if(!empty($_REQUEST['logout'])){
     }
 
     function getName($email){
-        $pdo = new PDO('mysql:host=localhost;dbname=budget-management', 'root', '123456');
+        $pdo = new PDO('mysql:host=localhost;dbname=budget-management', 'root', 'root');
         $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
         $pdo->setAttribute(PDO::ATTR_EMULATE_PREPARES, false);
         $getName = $pdo->query("SELECT name FROM user WHERE email='$email' ")->fetch();

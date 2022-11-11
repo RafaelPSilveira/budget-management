@@ -23,7 +23,7 @@ btnLancar.addEventListener("click", function(e) {
                 try {
                     let name = document.getElementById("name").value;
                     let release_date = document.getElementById("date").value;
-                    console.log(release_date);
+
                     let balance = document.getElementById("balance").value;
                     let category = document.getElementById("category").value;
                     let value = tiraMasc('#money');
@@ -77,9 +77,11 @@ const readRelease = async() => {
                         var valor = linha.insertCell(5);
                         var OBS = linha.insertCell(6);
                         var opcoes = linha.insertCell(7);
+
                         idRelease.innerHTML = releases[release].id;
                         nome.innerHTML = releases[release].name_include;
-                        date.innerHTML = new Date(releases[release].release_date).toLocaleDateString('pt-BR')
+                        date.innerHTML = convertDateBr(new Date(releases[release].release_date).toLocaleDateString('pt-BR'))
+
                         tipo.innerHTML = releases[release].type;
                         categoria.innerHTML = releases[release].category;
                         valor.innerHTML = parseFloat(releases[release].value).toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' });
@@ -106,13 +108,18 @@ function btnUpdate(element) {
     var categoriaRelease = $(element).closest("tr").find("td:nth-child(5)").text();
     var valorRelease = $(element).closest("tr").find("td:nth-child(6)").text();
     var obsRelease = $(element).closest("tr").find("td:nth-child(7)").text();
+    var btnSave = document.getElementById('btn-NewReleases');
+    var date = document.getElementById("date");
+
+    btnSave.classList.remove('btn-NewReleases');
+    date.setAttribute('max', convertDateEn(new Date().toLocaleDateString('pt-BR', { month: 'numeric', year: 'numeric', day: 'numeric' })))
+
 
     var inputName = document.getElementById('name');
     inputName.value = nomeRelease.toString();
 
     var inputDate = document.getElementById('date');
-    inputDate.value = convertDate(releaseDate.toString());
-    console.log(releaseDate);
+    inputDate.value = convertDateEn(releaseDate);
 
     var inputType = document.getElementById('balance');
     inputType.value = tipoRelease.toString();
@@ -279,8 +286,10 @@ const cardReceitas = async() => {
         await axios.get('../model/releaseDB.php?type=read_cards', { params: params }, { headers: { 'Content-Type': 'application/json' } })
             .then((response) => {
 
-                var valorReceitas = isNaN(response.data[0].value_receitas) ? 0 : response.data[0].value_receitas
-                var valorDespesas = isNaN(response.data[1].value_despesas) ? 0 : response.data[1].value_despesas
+                var valorReceitas = (response.data[0].value_receitas == null) ? 0 : response.data[0].value_receitas;
+                var valorDespesas = (response.data[1].value_despesas == null) ? 0 : response.data[1].value_despesas;
+
+
 
                 var receitas = document.getElementById('receitas')
                 var receitasH1 = document.createElement('h1')
@@ -344,6 +353,10 @@ function clearModal() {
     let category = document.getElementById("category");
     let value = document.getElementById("money");
     let description = document.getElementById("description");
+    let btnSave = document.getElementById('btn-NewReleases');
+
+    btnSave.classList.remove('update');
+    date.setAttribute('max', convertDateEn(new Date().toLocaleDateString('pt-BR', { month: 'numeric', year: 'numeric', day: 'numeric' })))
 
     name.value = '';
     date.value = '';
@@ -351,29 +364,34 @@ function clearModal() {
     category.value = '';
     value.value = '';
     description.value = '';
-}
 
-// function converteDate(date) {
-//     let d = new Date(date);
-//     let ye = new Intl.DateTimeFormat('en', { year: 'numeric' }).format(d);
-//     let da = new Intl.DateTimeFormat('en', { month: '2-digit' }).format(d);
-//     let mo = new Intl.DateTimeFormat('en', { day: '2-digit' }).format(d);
-//     let fullDate = `${ye}-${mo}-${da}`;
-//     console.log(fullDate);
-//     return fullDate;
-// }
+
+}
 
 var todaysDate = new Date();
 
-function convertDate(date) {
-    var yyyy = new Date(date).getFullYear().toString();
-    var mm = (new Date(date).getMonth() + 1).toString();
-    var dd = new Date(date).getDate().toString();
-    console.log('mes:' + mm, "dia:" + dd);
+function convertDateEn(date) {
+
+    var formatDate = date.split('/')
+
+    var yyyy = formatDate[2];
+    var mm = formatDate[1];
+    var dd = formatDate[0];
     var mmChars = mm.split('');
     var ddChars = dd.split('');
 
     return yyyy + '-' + (mmChars[1] ? mm : "0" + mmChars[0]) + '-' + (ddChars[1] ? dd : "0" + ddChars[0]);
 }
 
-console.log(convertDate(todaysDate));
+function convertDateBr(date) {
+
+    var formatDate = date.toString().split('/')
+
+    var yyyy = formatDate[2];
+    var mm = formatDate[1];
+    var dd = parseInt(formatDate[0]) + 1;
+    var mmChars = mm.split('');
+    var ddChars = dd.toString().split('');
+
+    return (ddChars[1] ? dd : "0" + ddChars[0]) + '/' + (mmChars[1] ? mm : "0" + mmChars[0]) + '/' + yyyy;
+}
