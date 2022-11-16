@@ -1,6 +1,6 @@
 <?php
 
-if(!empty($_REQUEST['login']) && empty($_REQUEST['email']) && empty($_REQUEST['passwrod'])){
+if(!empty($_REQUEST['login']) && empty($_REQUEST['email']) && empty($_REQUEST['password'])){
      header('Location: ../index.php');
 }
 if(!empty($_REQUEST['login'])&& !empty($_REQUEST['email']) && !empty($_REQUEST['password'])){
